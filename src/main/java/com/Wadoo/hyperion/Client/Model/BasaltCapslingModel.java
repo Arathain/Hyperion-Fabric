@@ -26,7 +26,17 @@ public class BasaltCapslingModel extends AnimatedGeoModel<BasaltCapslingEntity> 
 
     @Override
     public ResourceLocation getAnimationFileLocation(BasaltCapslingEntity animatable) {
-        return new ResourceLocation(Hyperion.MOD_ID, "animations/basalt_capsling/basalt_capsling.animations.json");
+        return new ResourceLocation(Hyperion.MOD_ID, "animations/entity/basalt_capsling/basalt_capsling.animations.json");
     }
 
+    @Override
+    public void setLivingAnimations(BasaltCapslingEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
+        super.setLivingAnimations(entity, uniqueID, customPredicate);
+        IBone Head = this.getAnimationProcessor().getBone("Jaw");
+
+        LivingEntity entityIn = (LivingEntity) entity;
+        EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
+        Head.setRotationX(extraData.headPitch * ((float) Math.PI / 180F));
+        Head.setRotationY(extraData.netHeadYaw * ((float) Math.PI / 180F));
+    }
 }

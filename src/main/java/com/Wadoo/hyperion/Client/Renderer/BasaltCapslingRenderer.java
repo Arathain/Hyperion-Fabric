@@ -1,6 +1,7 @@
 package com.Wadoo.hyperion.Client.Renderer;
 
 import com.Wadoo.hyperion.Client.Model.BasaltCapslingModel;
+import com.Wadoo.hyperion.Client.Renderer.Layers.BasaltItemLayer;
 import com.Wadoo.hyperion.Server.Entity.BasaltCapslingEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -13,6 +14,7 @@ import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 public class BasaltCapslingRenderer extends GeoEntityRenderer<BasaltCapslingEntity> {
     public BasaltCapslingRenderer(EntityRendererManager renderManager) {
         super(renderManager, new BasaltCapslingModel());
+        this.addLayer(new BasaltItemLayer(this));
     }
 
     @Override
