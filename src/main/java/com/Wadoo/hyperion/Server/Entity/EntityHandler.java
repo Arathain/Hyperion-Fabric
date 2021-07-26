@@ -11,7 +11,13 @@ import net.minecraftforge.fml.common.Mod;
 public final class EntityHandler {
     @SubscribeEvent
     public static void EntityAttributeCreationEvent(EntityAttributeCreationEvent event) {
-        
+        event.put(EntityRegister.BASALT_CAPSLING.get(), MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH,5.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.278D)
+                .add(Attributes.KNOCKBACK_RESISTANCE,0.3D)
+                .add(Attributes.ARMOR, 4.0D)
+                .add(Attributes.FOLLOW_RANGE, 28.0D)
+                .build());
     }
 
 }
