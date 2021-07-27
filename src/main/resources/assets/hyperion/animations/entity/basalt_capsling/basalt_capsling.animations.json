@@ -386,19 +386,6 @@
 					}
 				}
 			}
-		},
-		"animation.basalt_capsling.idle_walk": {
-			"loop": true,
-			"animation_length": 1.04,
-			"bones": {
-				"Head": {
-					"rotation": {
-						"vector": [-95, 0, 0],
-						"easing": "easeInBounce",
-						"easingArgs": [0.2]
-					}
-				}
-			}
 		}
 	}
 }
