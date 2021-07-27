@@ -1,6 +1,8 @@
 package com.Wadoo.hyperion.Server.Entity;
 
+import com.Wadoo.hyperion.Server.Entity.AI.BasaltOpenGoal;
 import com.Wadoo.hyperion.Server.Entity.AI.MoveToLavaGoal;
+import com.Wadoo.hyperion.Server.Entity.AI.PureBasaltGoal;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
@@ -33,6 +35,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Boolean> OPEN = EntityDataManager.defineId(BasaltCapslingEntity.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> BASALT = EntityDataManager.defineId(BasaltCapslingEntity.class, DataSerializers.BOOLEAN);
 
     public BasaltCapslingEntity(EntityType<? extends CreatureEntity> type, World world) {
         super(type, world);
@@ -56,10 +59,25 @@ public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable 
         }
     }
 
+    private <E extends IAnimatable> PlayState predicateOpen(AnimationEvent<E> event) {
+        if(getOpen()){
+            event.getController().setAnimation(new AnimationBuilder()
+                    .addAnimation("animation.basalt_capsling.open", true));
+            return PlayState.CONTINUE;
+        }
+        else{
+            event.getController().setAnimation(new AnimationBuilder()
+                    .addAnimation("animation.basalt_capsling.close", false));
+            return PlayState.CONTINUE;
+        }
+    }
+
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(OPEN, false);
+        this.entityData.define(BASALT, false);
+
     }
 
     public boolean getOpen() {
@@ -70,9 +88,19 @@ public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable 
         this.entityData.set(OPEN, open);
     }
 
+    public boolean getBasalt(){
+        return this.entityData.get(BASALT);
+    }
+
+    public void setBasalt(boolean basalt){
+        this.entityData.set(BASALT, basalt);
+    }
+
+
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController<BasaltCapslingEntity>(this, "controller", 0, this::predicate));
+        data.addAnimationController(new AnimationController<BasaltCapslingEntity>(this, "controllerOpen", 15, this::predicateOpen));
     }
 
     @Override
@@ -82,6 +110,8 @@ public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable 
         this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 0.8D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, BasaltCapslingEntity.class, 8.0F));
         this.goalSelector.addGoal(2, new MoveToLavaGoal(this, 1.0D));
+        this.goalSelector.addGoal(1, new BasaltOpenGoal(this));
+        this.goalSelector.addGoal(1, new PureBasaltGoal(this));
     }
 
     @Override
@@ -106,4 +136,24 @@ public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable 
         this.floatCapsling();
     }
 
+    @Override
+    protected ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+        ItemStack itemStack = player.getItemInHand(Hand.MAIN_HAND);
+        if(itemStack.getItem() == Items.BASALT){
+            this.setItemSlot(EquipmentSlotType.MAINHAND, itemStack);
+            itemStack.shrink(1);
+            setBasalt(true);
+            if (this.level.isClientSide) {
+                for (int i = 0; i < 40; ++i) {
+                    if (i % 10 == 0) {
+                        this.level.addParticle(ParticleTypes.HEART, this.getRandomX(0.5D), this.getRandomY() - 0.25D, this.getRandomZ(0.5D), (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
+                    }
+                }
+            }
+            return ActionResultType.SUCCESS;
+        }
+        else{
+            return ActionResultType.FAIL;
+        }
+    }
 }

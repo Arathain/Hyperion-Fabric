@@ -23,9 +23,9 @@ public class BasaltItemLayer<T extends LivingEntity & IAnimatable, M extends Ent
 
     public void render(MatrixStack matrixStack, IRenderTypeBuffer p_225628_2_, int p_225628_3_, T p_225628_4_, float p_225628_5_, float p_225628_6_, float p_225628_7_, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
         matrixStack.pushPose();
-        matrixStack.translate(0.0D, 0.5D, 0);
+        matrixStack.translate(0.0D, 0.55D, 0);
         matrixStack.mulPose(Vector3f.XP.rotationDegrees(180.0F));
-        matrixStack.scale(0.4F, 0.4F, 0.4F);
+        matrixStack.scale(0.5F, 0.5F, 0.5F);
         ItemStack lvt_11_1_ = p_225628_4_.getItemBySlot(EquipmentSlotType.MAINHAND);
         Minecraft.getInstance().getItemInHandRenderer().renderItem(p_225628_4_, lvt_11_1_, ItemCameraTransforms.TransformType.GROUND, false, matrixStack, p_225628_2_, p_225628_3_);
         matrixStack.popPose();

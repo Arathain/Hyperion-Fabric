@@ -2,6 +2,7 @@ package com.Wadoo.hyperion;
 
 
 import com.Wadoo.hyperion.Server.Register.EntityRegister;
+import com.Wadoo.hyperion.Server.Register.ItemRegister;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -26,6 +27,7 @@ public class Hyperion
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         MinecraftForge.EVENT_BUS.register(this);
         EntityRegister.ENTITIES.register(bus);
+        ItemRegister.ITEMS.register(bus);
         GeckoLib.initialize();
     }
 

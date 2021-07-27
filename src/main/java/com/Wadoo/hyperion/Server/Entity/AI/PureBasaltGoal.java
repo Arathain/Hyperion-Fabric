@@ -1,0 +1,46 @@
+package com.Wadoo.hyperion.Server.Entity.AI;
+
+import com.Wadoo.hyperion.Server.Entity.BasaltCapslingEntity;
+import com.Wadoo.hyperion.Server.Register.ItemRegister;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.Hand;
+
+public class PureBasaltGoal extends Goal {
+    private final BasaltCapslingEntity entity;
+    private int basaltTimer = 0;
+    public PureBasaltGoal(BasaltCapslingEntity entity){
+        this.entity = entity;
+    }
+    @Override
+    public boolean canUse() {
+        if(this.entity.getBasalt()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    @Override
+    public void start() {
+        super.start();
+        basaltTimer = 200;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if(basaltTimer >= 0){
+            basaltTimer--;
+        }
+        else{
+            this.entity.setItemInHand(Hand.MAIN_HAND, ItemStack.EMPTY);
+            this.entity.setBasalt(false);
+            ItemEntity entity = new ItemEntity(this.entity.level, this.entity.getX(), this.entity.getY(), this.entity.getZ(), new ItemStack(ItemRegister.PURE_BASALT.get(), 1));
+            this.entity.level.addFreshEntity(entity);
+        }
+    }
+}
