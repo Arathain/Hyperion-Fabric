@@ -100,7 +100,7 @@ public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable 
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController<BasaltCapslingEntity>(this, "controller", 0, this::predicate));
-        data.addAnimationController(new AnimationController<BasaltCapslingEntity>(this, "controllerOpen", 15, this::predicateOpen));
+        data.addAnimationController(new AnimationController<BasaltCapslingEntity>(this, "controllerOpen", 7, this::predicateOpen));
     }
 
     @Override
@@ -139,18 +139,22 @@ public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable 
     @Override
     protected ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getItemInHand(Hand.MAIN_HAND);
-        if(itemStack.getItem() == Items.BASALT){
-            this.setItemSlot(EquipmentSlotType.MAINHAND, itemStack);
-            itemStack.shrink(1);
-            setBasalt(true);
-            if (this.level.isClientSide) {
-                for (int i = 0; i < 40; ++i) {
-                    if (i % 10 == 0) {
-                        this.level.addParticle(ParticleTypes.HEART, this.getRandomX(0.5D), this.getRandomY() - 0.25D, this.getRandomZ(0.5D), (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
+        if(!getBasalt()) {
+            if (itemStack.getItem() == Items.BASALT) {
+                this.setItemSlot(EquipmentSlotType.MAINHAND, itemStack);
+                itemStack.shrink(1);
+                setBasalt(true);
+                if (this.level.isClientSide) {
+                    for (int i = 0; i < 40; ++i) {
+                        if (i % 10 == 0) {
+                            this.level.addParticle(ParticleTypes.HEART, this.getRandomX(0.5D), this.getRandomY() - 0.25D, this.getRandomZ(0.5D), (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
+                        }
                     }
                 }
+                return ActionResultType.SUCCESS;
+            } else {
+                return ActionResultType.FAIL;
             }
-            return ActionResultType.SUCCESS;
         }
         else{
             return ActionResultType.FAIL;
