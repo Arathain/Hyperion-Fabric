@@ -22,8 +22,7 @@ import software.bernie.geckolib3.geo.render.built.GeoBone;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
 public class BasaltCapslingRenderer extends GeoEntityRenderer<BasaltCapslingEntity> {
-    private static final ItemStack basalt = new ItemStack(Items.BASALT);
-
+    public BasaltCapslingEntity entity;
 
     public BasaltCapslingRenderer(EntityRendererManager renderManager) {
         super(renderManager, new BasaltCapslingModel());
@@ -37,15 +36,22 @@ public class BasaltCapslingRenderer extends GeoEntityRenderer<BasaltCapslingEnti
     }
 
     @Override
-    public void renderRecursively(GeoBone bone, MatrixStack matrixStack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
-        if(bone.getName().equals("Item") && !bone.isHidden()){
-            matrixStack.pushPose();
-            matrixStack.translate(0.0D, 0.55D, 0);
-            matrixStack.scale(0.5F, 0.5F, 0.5F);
-            Minecraft.getInstance().getItemRenderer().renderStatic(basalt, ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND, packedLightIn, packedOverlayIn, matrixStack, this.rtb);
-            matrixStack.popPose();
-        }
-        super.renderRecursively(bone, matrixStack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+    public void renderEarly(BasaltCapslingEntity entity, MatrixStack stackIn, float ticks, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float partialTicks) {
+        this.entity = entity;
+        super.renderEarly(entity, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn, red, green, blue, partialTicks);
+    }
 
+    @Override
+    public void renderRecursively(GeoBone bone, MatrixStack stack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+        if (bone.getName().equals("Item")) {
+            stack.pushPose();
+            stack.translate(0.0D, 0.55D, 0.0D);
+            stack.mulPose(Vector3f.XP.rotationDegrees(180.0F));
+            stack.scale(0.5f, 0.5f, 0.5f);
+            Minecraft.getInstance().getItemRenderer().renderStatic(entity.getItemBySlot(EquipmentSlotType.MAINHAND), ItemCameraTransforms.TransformType.GROUND, packedLightIn, packedOverlayIn, stack, this.rtb);
+            stack.popPose();
+            bufferIn = rtb.getBuffer(RenderType.entityTranslucent(whTexture));
+        }
+        super.renderRecursively(bone, stack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
     }
 }

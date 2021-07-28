@@ -33,10 +33,19 @@ public class BasaltCapslingModel extends AnimatedGeoModel<BasaltCapslingEntity> 
     public void setLivingAnimations(BasaltCapslingEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
         IBone Head = this.getAnimationProcessor().getBone("Jaw");
+        IBone Item = this.getAnimationProcessor().getBone("Item");
+
 
         LivingEntity entityIn = (LivingEntity) entity;
         EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
         Head.setRotationX(extraData.headPitch * ((float) Math.PI / 180F));
         Head.setRotationY(extraData.netHeadYaw * ((float) Math.PI / 180F));
+
+        if(entity.getBasalt()){
+            Item.setHidden(false);
+        }
+        else{
+            Item.setHidden(true);
+        }
     }
 }
