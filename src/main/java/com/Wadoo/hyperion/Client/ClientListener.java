@@ -1,5 +1,6 @@
 package com.Wadoo.hyperion.Client;
 
+import com.Wadoo.hyperion.Client.Renderer.BasaltArrowRenderer;
 import com.Wadoo.hyperion.Client.Renderer.BasaltCapslingRenderer;
 import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Register.EntityRegister;
@@ -15,5 +16,9 @@ public class ClientListener {
     public static void registerRenderers(final FMLClientSetupEvent event) {
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.BASALT_CAPSLING.get(),
                 manager -> new BasaltCapslingRenderer(manager));
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityRegister.BASALT_ARROW.get(),
+                manager -> new BasaltArrowRenderer(manager));
     }
+    
 }

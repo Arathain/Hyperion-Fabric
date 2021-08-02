@@ -1,9 +1,12 @@
 package com.Wadoo.hyperion.Server.Register;
 
 import com.Wadoo.hyperion.Hyperion;
+import com.Wadoo.hyperion.Server.Entity.BasaltArrowEntity;
 import com.Wadoo.hyperion.Server.Entity.BasaltCapslingEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -18,6 +21,15 @@ public class EntityRegister {
                     ()->EntityType.Builder.of(BasaltCapslingEntity::new, EntityClassification.CREATURE)
                             .fireImmune()
                             .sized(0.45F,1.0F)
-                            .build("basalt_capsling"));
+                            .build(new ResourceLocation(Hyperion.MOD_ID, "basalt_capsling").toString()));
+
+    public static final RegistryObject<EntityType<BasaltArrowEntity>> BASALT_ARROW =
+            ENTITIES.register("basalt_arrow",
+                    ()->EntityType.Builder.<BasaltArrowEntity>of(BasaltArrowEntity::new, EntityClassification.MISC)
+                            .sized(0.05F,0.05F)
+                            .clientTrackingRange(4)
+                            .updateInterval(20)
+                            .fireImmune()
+                            .build("basalt_arrow"));
 
 }

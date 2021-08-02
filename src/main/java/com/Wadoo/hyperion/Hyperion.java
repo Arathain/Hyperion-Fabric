@@ -1,10 +1,14 @@
 package com.Wadoo.hyperion;
 
 
+import com.Wadoo.hyperion.Server.Item.HyperionSpawnEggItem;
 import com.Wadoo.hyperion.Server.Register.EntityRegister;
 import com.Wadoo.hyperion.Server.Register.ItemRegister;
+import net.minecraft.entity.EntityType;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -29,6 +33,11 @@ public class Hyperion
         EntityRegister.ENTITIES.register(bus);
         ItemRegister.ITEMS.register(bus);
         GeckoLib.initialize();
+    }
+
+    @SubscribeEvent
+    public static void onRegisterEntities(final RegistryEvent.Register<EntityType<?>> event) {
+        HyperionSpawnEggItem.SpawnEggsRegister();
     }
 
     private void setup(final FMLCommonSetupEvent event)

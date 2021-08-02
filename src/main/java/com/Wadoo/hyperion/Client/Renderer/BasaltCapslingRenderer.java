@@ -26,6 +26,7 @@ public class BasaltCapslingRenderer extends GeoEntityRenderer<BasaltCapslingEnti
 
     public BasaltCapslingRenderer(EntityRendererManager renderManager) {
         super(renderManager, new BasaltCapslingModel());
+        this.shadowRadius = 0.16788F;
     }
 
     @Override
