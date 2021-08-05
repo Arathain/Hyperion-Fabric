@@ -14,6 +14,7 @@ public class BasaltArrowItem extends ArrowItem {
 
     public BasaltArrowItem(Item.Properties properties) {
         super(properties);
+
     }
 
     public AbstractArrowEntity createArrow(World world, ItemStack itemStack, EntityType entity) {
