@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " #i",
+    " /#",
+    "F  "
+  ],
+  "key": {
+    "#": {
+      "item": "hyperion:pure_basalt"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "F": {
+      "item": "hyperion:pure_basalt"
+    }
+  },
+  "result": {
+    "item": "hyperion:basalt_arrow",
+    "count": 8
+  }
+}
