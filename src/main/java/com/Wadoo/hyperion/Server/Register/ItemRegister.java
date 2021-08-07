@@ -22,10 +22,10 @@ public class ItemRegister {
             = DeferredRegister.create(ForgeRegistries.ITEMS, Hyperion.MOD_ID);
 
     public static final RegistryObject<Item> PURE_BASALT =
-            ITEMS.register("hyperion:pure_basalt", () ->
+            ITEMS.register("pure_basalt", () ->
                     new Item(new Item.Properties().rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
 
     public static final RegistryObject<BasaltArrowItem> BASALT_ARROW =
-            ITEMS.register("hyperion:basalt_arrow", () ->
+            ITEMS.register("basalt_arrow", () ->
                     new BasaltArrowItem(new Item.Properties().rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
 }

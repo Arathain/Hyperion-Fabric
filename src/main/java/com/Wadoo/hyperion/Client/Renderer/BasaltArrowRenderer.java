@@ -28,8 +28,6 @@ public class BasaltArrowRenderer extends GeoProjectilesRenderer<BasaltArrowEntit
     public void render(GeoModel model, BasaltArrowEntity animatable, float partialTicks, RenderType type, MatrixStack matrixStackIn, @Nullable IRenderTypeBuffer renderTypeBuffer, @Nullable IVertexBuilder vertexBuilder, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         super.render(model, animatable, partialTicks, type, matrixStackIn, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         matrixStackIn.pushPose();
-        matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, animatable.yRotO, animatable.yRot) - 90.0F));
-        matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, animatable.xRotO, animatable.xRot)));
         matrixStackIn.popPose();
     }
 }

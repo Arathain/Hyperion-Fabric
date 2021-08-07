@@ -26,7 +26,7 @@ public class EntityRegister {
     public static final RegistryObject<EntityType<BasaltArrowEntity>> BASALT_ARROW =
             ENTITIES.register("basalt_arrow",
                     ()->EntityType.Builder.<BasaltArrowEntity>of(BasaltArrowEntity::new, EntityClassification.MISC)
-                            .sized(0.05F,0.05F)
+                            .sized(0.25F,0.25F)
                             .clientTrackingRange(4)
                             .updateInterval(20)
                             .fireImmune()
