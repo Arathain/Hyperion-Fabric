@@ -1,6 +1,8 @@
 package com.Wadoo.hyperion.Server.Item;
 
+import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Entity.BasaltArrowEntity;
+import com.Wadoo.hyperion.Server.Register.EntityRegister;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -14,12 +16,10 @@ public class BasaltArrowItem extends ArrowItem {
 
     public BasaltArrowItem(Item.Properties properties) {
         super(properties);
-
     }
 
-    public AbstractArrowEntity createArrow(World world, ItemStack itemStack, EntityType entity) {
-        BasaltArrowEntity arrowentity = new BasaltArrowEntity(entity, world);
-        return arrowentity;
+    public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity shooter) {
+        return new BasaltArrowEntity(EntityRegister.BASALT_ARROW.get(), shooter, worldIn);
     }
 
     public boolean isInfinite(ItemStack stack, ItemStack bow, net.minecraft.entity.player.PlayerEntity player) {

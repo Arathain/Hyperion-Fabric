@@ -32,4 +32,5 @@ public class EntityRegister {
                             .fireImmune()
                             .build("basalt_arrow"));
 
+
 }
