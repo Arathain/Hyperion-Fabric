@@ -1,18 +1,16 @@
 
-modLoader="javafml" #mandatory
-loaderVersion="[35,)" #mandatory
-license="GNU 3.0" #mandatory https://choosealicense.com/
-issueTrackerURL="http://my.issue.tracker/" #optional
+modLoader="javafml"
+loaderVersion="[35,)"
+license="GNU 3.0"
+issueTrackerURL="https://github.com/Wadoo-Gazoono/Hyperion/issues" #optional
  
 [[mods]] #mandatory
-modId="hyperion" #mandatory
-version="0.0.1" #mandatory
-displayName="Hyperion" #mandatory
-updateJSONURL="http://myurl.me/" #optional
-displayURL="http://example.com/" #optional
-logoFile="examplemod.png" #optional
-credits="The credits for your mod." #optional
-authors="Programming: Wadoo and Naz Texturing: Virtualhel and HauntedChest" #optional
+modId="hyperion"
+version="0.0.1"
+displayName="Hyperion"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/hyperion"
+logoFile="hyperion.png"
+authors="Wadoo, Virtualhel, and Naz"
 description='''
-A Mod that strengthens the Nether portion of a Minecraft playthrough.
+A Nether mod that adds new and interesting mechanics, mobs, and more!
 ''' #mandatory

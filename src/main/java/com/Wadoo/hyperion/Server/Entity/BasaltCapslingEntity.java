@@ -17,6 +17,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -99,6 +100,17 @@ public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable 
         this.entityData.set(BASALT, basalt);
     }
 
+    @Override
+    public void addAdditionalSaveData(CompoundNBT NBT) {
+        super.addAdditionalSaveData(NBT);
+        NBT.putBoolean("Basalt", this.getBasalt());
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundNBT NBT) {
+        super.readAdditionalSaveData(NBT);
+        setBasalt(NBT.getBoolean("Basalt"));
+    }
 
     @Override
     public void registerControllers(AnimationData data) {
@@ -130,7 +142,7 @@ public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable 
                 this.onGround = true;
             } else {
                 this.setDeltaMovement(this.getDeltaMovement().scale(0.5D).add(0.0D, 0.2D, 0.0D));
-                this.setDeltaMovement(this.getViewVector(2.0F));
+                this.setSpeed(1.2f);
             }
         }
     }

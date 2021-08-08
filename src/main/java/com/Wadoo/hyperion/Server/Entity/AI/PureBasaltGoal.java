@@ -27,7 +27,7 @@ public class PureBasaltGoal extends Goal {
     @Override
     public void start() {
         super.start();
-        basaltTimer = 200;
+        basaltTimer = 700;
     }
 
     @Override
