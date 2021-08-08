@@ -1,17 +1,11 @@
 package com.Wadoo.hyperion.Server.Register;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.Server.Entity.BasaltCapslingEntity;
-import com.Wadoo.hyperion.Server.Entity.EntityHandler;
 import com.Wadoo.hyperion.Server.Item.BasaltArrowItem;
 import com.Wadoo.hyperion.Server.Item.HyperionSpawnEggItem;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraftforge.common.util.NonNullSupplier;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -28,4 +22,14 @@ public class ItemRegister {
     public static final RegistryObject<BasaltArrowItem> BASALT_ARROW =
             ITEMS.register("basalt_arrow", () ->
                     new BasaltArrowItem(new Item.Properties().rarity(Rarity.RARE).tab(ItemGroup.TAB_MISC)));
+
+    public static final RegistryObject<Item> BASALT_CAPSLING_SPAWN_EGG = ITEMS.register(
+            "basalt_capsling_spawn_egg",
+            () -> new HyperionSpawnEggItem(
+                    EntityRegister.BASALT_CAPSLING::get,
+                    0x868686,
+                    0x3f3f4e,
+                   (new Item.Properties().tab(ItemGroup.TAB_MISC))
+            )
+    );
 }

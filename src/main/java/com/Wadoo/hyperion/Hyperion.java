@@ -16,8 +16,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
 
-import java.util.stream.Collectors;
-
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("hyperion")
 public class Hyperion
@@ -37,7 +35,7 @@ public class Hyperion
 
     @SubscribeEvent
     public static void onRegisterEntities(final RegistryEvent.Register<EntityType<?>> event) {
-        HyperionSpawnEggItem.SpawnEggsRegister();
+        HyperionSpawnEggItem.RegisterSpawnEggs();
     }
 
     private void setup(final FMLCommonSetupEvent event)
