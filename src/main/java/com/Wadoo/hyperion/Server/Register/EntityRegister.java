@@ -1,11 +1,11 @@
 package com.Wadoo.hyperion.Server.Register;
 
 import com.Wadoo.hyperion.Hyperion;
+import com.Wadoo.hyperion.Server.Entity.AI.WarpedFunglingEntity;
 import com.Wadoo.hyperion.Server.Entity.BasaltArrowEntity;
 import com.Wadoo.hyperion.Server.Entity.BasaltCapslingEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -22,6 +22,12 @@ public class EntityRegister {
                             .fireImmune()
                             .sized(0.45F,1.0F)
                             .build(new ResourceLocation(Hyperion.MOD_ID, "basalt_capsling").toString()));
+
+    public static final RegistryObject<EntityType<WarpedFunglingEntity>> WARPED_FUNGLING =
+            ENTITIES.register("warped_fungling",
+                    ()->EntityType.Builder.of(WarpedFunglingEntity::new, EntityClassification.MONSTER)
+                            .sized(0.5F,2.0F)
+                            .build(new ResourceLocation(Hyperion.MOD_ID, "warped_fungling").toString()));
 
     public static final RegistryObject<EntityType<BasaltArrowEntity>> BASALT_ARROW =
             ENTITIES.register("basalt_arrow",
