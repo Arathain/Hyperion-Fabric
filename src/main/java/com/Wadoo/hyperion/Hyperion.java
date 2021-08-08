@@ -5,6 +5,8 @@ import com.Wadoo.hyperion.Server.Item.HyperionSpawnEggItem;
 import com.Wadoo.hyperion.Server.Register.EntityRegister;
 import com.Wadoo.hyperion.Server.Register.ItemRegister;
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -16,12 +18,21 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
 
+import javax.annotation.Nonnull;
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("hyperion")
 public class Hyperion
 {
     public static final String MOD_ID = "hyperion";
     private static final Logger LOGGER = LogManager.getLogger();
+    public static final ItemGroup HYPERION_ITEM_GROUP = new ItemGroup("hyperion_tab") {
+        @Nonnull
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(ItemRegister.PURE_BASALT.get());
+        }
+    };
 
     public Hyperion() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
