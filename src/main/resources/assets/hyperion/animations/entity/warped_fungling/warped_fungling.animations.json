@@ -197,27 +197,27 @@
 						"vector": [0, 0, "Math.sin(query.anim_time * 180) * 1.2"]
 					},
 					"position": {
-						"vector": [0, "(Math.sin(query.anim_time * 360) * 0.2) +NaN", 0]
+						"vector": [0, "(Math.sin(query.anim_time * 720) * 0.2) - 0.5", 0]
 					}
 				},
 				"ArmR": {
 					"rotation": {
-						"vector": ["Math.sin(query.anim_time * 180) * 6", 0, 0]
+						"vector": ["Math.sin(query.anim_time * 720) * 6", 0, 0]
 					}
 				},
 				"ArmL": {
 					"rotation": {
-						"vector": ["Math.sin(query.anim_time * 180) * -6", 0, 0]
+						"vector": ["Math.sin(query.anim_time * 720) * -6", 0, 0]
 					}
 				},
 				"LegR": {
 					"rotation": {
-						"vector": ["(math.sin(query.anim_time * 180) * -7 )", 0, 0]
+						"vector": ["(math.sin(query.anim_time * 720) * -7 )", 0, 0]
 					}
 				},
 				"LegL": {
 					"rotation": {
-						"vector": ["(math.sin(query.anim_time * 180) * 7   )", 0, 0]
+						"vector": ["(math.sin(query.anim_time * 720) * 7   )", 0, 0]
 					}
 				}
 			}

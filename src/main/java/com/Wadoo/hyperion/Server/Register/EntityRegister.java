@@ -1,9 +1,9 @@
 package com.Wadoo.hyperion.Server.Register;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.Server.Entity.AI.WarpedFunglingEntity;
 import com.Wadoo.hyperion.Server.Entity.BasaltArrowEntity;
 import com.Wadoo.hyperion.Server.Entity.BasaltCapslingEntity;
+import com.Wadoo.hyperion.Server.Entity.WarpedFunglingEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;

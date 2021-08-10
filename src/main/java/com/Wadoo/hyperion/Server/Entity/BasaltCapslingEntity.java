@@ -3,15 +3,12 @@ package com.Wadoo.hyperion.Server.Entity;
 import com.Wadoo.hyperion.Server.Entity.AI.BasaltOpenGoal;
 import com.Wadoo.hyperion.Server.Entity.AI.MoveToLavaGoal;
 import com.Wadoo.hyperion.Server.Entity.AI.PureBasaltGoal;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
-import net.minecraft.entity.monster.MagmaCubeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -125,9 +122,9 @@ public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable 
         this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 0.8D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, BasaltCapslingEntity.class, 8.0F));
         this.goalSelector.addGoal(2, new MoveToLavaGoal(this, 1.0D));
+        this.goalSelector.addGoal(2, new TemptGoal(this, 1.0D, Ingredient.of(Items.BASALT), false));
         this.goalSelector.addGoal(1, new BasaltOpenGoal(this));
         this.goalSelector.addGoal(1, new PureBasaltGoal(this));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, Ingredient.of(Items.BASALT), false));
     }
 
     @Override

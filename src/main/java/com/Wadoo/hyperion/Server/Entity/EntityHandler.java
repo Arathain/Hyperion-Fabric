@@ -21,7 +21,7 @@ public final class EntityHandler {
 
         event.put(EntityRegister.WARPED_FUNGLING.get(), MobEntity.createMobAttributes()
                 .add(Attributes.MAX_HEALTH,25.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.6D)
+                .add(Attributes.MOVEMENT_SPEED, 0.17D)
                 .add(Attributes.KNOCKBACK_RESISTANCE,0.12D)
                 .add(Attributes.ARMOR, 8.0D)
                 .add(Attributes.FOLLOW_RANGE, 28.0D)

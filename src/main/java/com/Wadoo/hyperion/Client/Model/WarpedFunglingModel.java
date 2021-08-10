@@ -1,7 +1,7 @@
 package com.Wadoo.hyperion.Client.Model;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.Server.Entity.AI.WarpedFunglingEntity;
+import com.Wadoo.hyperion.Server.Entity.WarpedFunglingEntity;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 

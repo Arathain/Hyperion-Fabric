@@ -1,8 +1,8 @@
 package com.Wadoo.hyperion.Client.Renderer;
 
 import com.Wadoo.hyperion.Client.Model.WarpedFunglingModel;
-import com.Wadoo.hyperion.Server.Entity.AI.WarpedFunglingEntity;
 import com.Wadoo.hyperion.Server.Entity.BasaltCapslingEntity;
+import com.Wadoo.hyperion.Server.Entity.WarpedFunglingEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
