@@ -3,6 +3,7 @@ package com.Wadoo.hyperion.Server.Register;
 import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Entity.BasaltArrowEntity;
 import com.Wadoo.hyperion.Server.Entity.BasaltCapslingEntity;
+import com.Wadoo.hyperion.Server.Entity.WarpedFunglingEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -29,6 +30,12 @@ public class EntityRegister {
                             .clientTrackingRange(4)
                             .updateInterval(20)
                             .fireImmune()
+                            .build("basalt_arrow"));
+
+    public static final RegistryObject<EntityType<WarpedFunglingEntity>> WARPED_FUNGLING =
+            ENTITIES.register("warped_fungling",
+                    ()->EntityType.Builder.<WarpedFunglingEntity>of(WarpedFunglingEntity::new, EntityClassification.MONSTER)
+                            .sized(0.8F,2.15F)
                             .build("basalt_arrow"));
 
 

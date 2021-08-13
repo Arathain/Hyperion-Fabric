@@ -2,6 +2,7 @@ package com.Wadoo.hyperion.Client;
 
 import com.Wadoo.hyperion.Client.Renderer.BasaltArrowRenderer;
 import com.Wadoo.hyperion.Client.Renderer.BasaltCapslingRenderer;
+import com.Wadoo.hyperion.Client.Renderer.Layers.WarpedFunglingRenderer;
 import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Register.EntityRegister;
 import net.minecraftforge.api.distmarker.Dist;
@@ -19,6 +20,9 @@ public class ClientListener {
 
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.BASALT_ARROW.get(),
                 manager -> new BasaltArrowRenderer(manager));
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityRegister.WARPED_FUNGLING.get(),
+                manager -> new WarpedFunglingRenderer(manager));
 
     }
     

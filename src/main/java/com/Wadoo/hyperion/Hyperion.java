@@ -4,11 +4,13 @@ package com.Wadoo.hyperion;
 import com.Wadoo.hyperion.Server.Item.HyperionSpawnEggItem;
 import com.Wadoo.hyperion.Server.Register.EntityRegister;
 import com.Wadoo.hyperion.Server.Register.ItemRegister;
+import com.Wadoo.hyperion.Server.World.Generation.HyperionEntitySpawns;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -41,6 +43,7 @@ public class Hyperion
         MinecraftForge.EVENT_BUS.register(this);
         EntityRegister.ENTITIES.register(bus);
         ItemRegister.ITEMS.register(bus);
+        MinecraftForge.EVENT_BUS.addListener(this::onBiomeLoad);
         GeckoLib.initialize();
     }
 
@@ -49,6 +52,9 @@ public class Hyperion
         HyperionSpawnEggItem.RegisterSpawnEggs();
     }
 
+    public void onBiomeLoad(BiomeLoadingEvent event){
+        HyperionEntitySpawns.onBiomesLoad(event);
+    }
     private void setup(final FMLCommonSetupEvent event)
     {
 
