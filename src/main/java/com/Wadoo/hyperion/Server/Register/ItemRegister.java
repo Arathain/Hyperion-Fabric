@@ -2,9 +2,12 @@ package com.Wadoo.hyperion.Server.Register;
 
 import com.Wadoo.hyperion.Client.Renderer.DevourerJawsRenderer;
 import com.Wadoo.hyperion.Hyperion;
+import com.Wadoo.hyperion.Server.Item.Armour.DevourArmourItem;
 import com.Wadoo.hyperion.Server.Item.BasaltArrowItem;
 import com.Wadoo.hyperion.Server.Item.DevourerJawsItem;
 import com.Wadoo.hyperion.Server.Item.HyperionSpawnEggItem;
+import com.Wadoo.hyperion.Server.Utils.Enums.HyperionArmorMaterial;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
 import net.minecraftforge.fml.RegistryObject;
@@ -23,6 +26,9 @@ public class ItemRegister {
     public static final RegistryObject<BasaltArrowItem> BASALT_ARROW =
             ITEMS.register("basalt_arrow", () ->
                     new BasaltArrowItem(new Item.Properties().rarity(Rarity.RARE).fireResistant().tab(Hyperion.HYPERION_ITEM_GROUP)));
+
+    public static final RegistryObject<Item> DEVOUR_CHESTPLATE = ITEMS.register("devour_chestplate",
+            () -> new DevourArmourItem(HyperionArmorMaterial.DEVOUR, EquipmentSlotType.CHEST));
 
     public static final RegistryObject<DevourerJawsItem> DEVOURER_JAWS =
             ITEMS.register("devourer_jaws", () ->

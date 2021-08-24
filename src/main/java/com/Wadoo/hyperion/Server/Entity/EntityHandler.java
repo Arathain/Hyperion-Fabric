@@ -20,11 +20,11 @@ public final class EntityHandler {
                 .build());
 
         event.put(EntityRegister.BASALT_DEVOURER.get(), MobEntity.createMobAttributes()
-                .add(Attributes.MAX_HEALTH,25.0D)
+                .add(Attributes.MAX_HEALTH,35.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.251D)
                 .add(Attributes.KNOCKBACK_RESISTANCE,0.3D)
                 .add(Attributes.ARMOR, 4.0D)
-                .add(Attributes.FOLLOW_RANGE, 28.0D)
+                .add(Attributes.FOLLOW_RANGE, 48.0D)
                 .add(Attributes.ATTACK_DAMAGE, 8.5D)
                 .build());
     }
