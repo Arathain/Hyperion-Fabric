@@ -1,0 +1,56 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "Root",
+					"pivot": [0, 1, -4]
+				},
+				{
+					"name": "Neck",
+					"parent": "Root",
+					"pivot": [0, 1, -4],
+					"cubes": [
+						{"origin": [-5, 0.5, -7], "size": [10, 8, 6], "inflate": -0.1, "uv": [32, 48]}
+					]
+				},
+				{
+					"name": "Handle",
+					"parent": "Root",
+					"pivot": [0, 5, -1.75],
+					"rotation": [-25, 0, 0],
+					"cubes": [
+						{"origin": [-2.5, 2, -1.75], "size": [5, 5, 11], "uv": [0, 35]}
+					]
+				},
+				{
+					"name": "JawL",
+					"parent": "Root",
+					"pivot": [2, 5, 0],
+					"cubes": [
+						{"origin": [2, 0, -8], "size": [5, 10, 8], "uv": [0, 0]},
+						{"origin": [0, 1, -7.5], "size": [5, 8, 7], "uv": [0, 19]}
+					]
+				},
+				{
+					"name": "JawR",
+					"parent": "Root",
+					"pivot": [-2, 5, 0],
+					"cubes": [
+						{"origin": [-7, 0, -8], "size": [5, 10, 8], "uv": [28, 0], "mirror": true},
+						{"origin": [-5, 1, -7.5], "size": [5, 8, 7], "uv": [26, 19], "mirror": true}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,7 +1,7 @@
-package com.Wadoo.hyperion.Client.Renderer.Layers;
+package com.Wadoo.hyperion.Client.Renderer;
 
-import com.Wadoo.hyperion.Client.Model.WarpedFunglingModel;
-import com.Wadoo.hyperion.Server.Entity.WarpedFunglingEntity;
+import com.Wadoo.hyperion.Client.Model.BasaltDevourerModel;
+import com.Wadoo.hyperion.Server.Entity.BasaltDevourerEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -10,16 +10,16 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
-public class WarpedFunglingRenderer extends GeoEntityRenderer<WarpedFunglingEntity> {
-    public WarpedFunglingEntity entity;
+public class BasaltDevourerRenderer extends GeoEntityRenderer<BasaltDevourerEntity> {
+    public BasaltDevourerEntity entity;
 
-    public WarpedFunglingRenderer(EntityRendererManager renderManager) {
-        super(renderManager, new WarpedFunglingModel());
-        this.shadowRadius = 0.16788F;
+    public BasaltDevourerRenderer(EntityRendererManager renderManager) {
+        super(renderManager, new BasaltDevourerModel());
+        this.shadowRadius = 0.6F;
     }
 
     @Override
-    public RenderType getRenderType(WarpedFunglingEntity animatable, float partialTicks, MatrixStack stack,
+    public RenderType getRenderType(BasaltDevourerEntity animatable, float partialTicks, MatrixStack stack,
                                     IRenderTypeBuffer renderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn,
                                     ResourceLocation textureLocation) {
         return RenderType.entityTranslucent(getTextureLocation(animatable));

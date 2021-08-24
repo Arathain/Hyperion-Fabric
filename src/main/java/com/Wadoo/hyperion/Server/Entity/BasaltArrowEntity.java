@@ -1,20 +1,12 @@
 package com.Wadoo.hyperion.Server.Entity;
 
 import com.Wadoo.hyperion.Server.Register.ItemRegister;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.network.IPacket;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.potion.Potions;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -79,7 +71,7 @@ public class BasaltArrowEntity extends AbstractArrowEntity implements IAnimatabl
         super.doPostHurtEffects(entity);
         int arrowTimer = 50;
         this.entity = entity;
-        this.entity.hurt(DamageSource.arrow(this, this.shooter), (this.entity.getArmorValue() /2.0f) * 0.09f);
+        this.entity.hurt(DamageSource.arrow(this, this.shooter), this.entity.getArmorValue() /2.0f * 0.09f);
     }
 
     @Override

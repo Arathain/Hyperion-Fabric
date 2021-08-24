@@ -1,7 +1,9 @@
 package com.Wadoo.hyperion.Server.Register;
 
+import com.Wadoo.hyperion.Client.Renderer.DevourerJawsRenderer;
 import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Item.BasaltArrowItem;
+import com.Wadoo.hyperion.Server.Item.DevourerJawsItem;
 import com.Wadoo.hyperion.Server.Item.HyperionSpawnEggItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
@@ -20,7 +22,11 @@ public class ItemRegister {
 
     public static final RegistryObject<BasaltArrowItem> BASALT_ARROW =
             ITEMS.register("basalt_arrow", () ->
-                    new BasaltArrowItem(new Item.Properties().rarity(Rarity.RARE).tab(Hyperion.HYPERION_ITEM_GROUP)));
+                    new BasaltArrowItem(new Item.Properties().rarity(Rarity.RARE).fireResistant().tab(Hyperion.HYPERION_ITEM_GROUP)));
+
+    public static final RegistryObject<DevourerJawsItem> DEVOURER_JAWS =
+            ITEMS.register("devourer_jaws", () ->
+                    new DevourerJawsItem(new Item.Properties().setISTER(() -> DevourerJawsRenderer::new).rarity(Rarity.UNCOMMON).defaultDurability(200).fireResistant().tab(Hyperion.HYPERION_ITEM_GROUP)));
 
     public static final RegistryObject<Item> BASALT_CAPSLING_SPAWN_EGG = ITEMS.register(
             "basalt_capsling_spawn_egg",

@@ -3,7 +3,7 @@ package com.Wadoo.hyperion.Server.Register;
 import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Entity.BasaltArrowEntity;
 import com.Wadoo.hyperion.Server.Entity.BasaltCapslingEntity;
-import com.Wadoo.hyperion.Server.Entity.WarpedFunglingEntity;
+import com.Wadoo.hyperion.Server.Entity.BasaltDevourerEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -32,11 +32,11 @@ public class EntityRegister {
                             .fireImmune()
                             .build("basalt_arrow"));
 
-    public static final RegistryObject<EntityType<WarpedFunglingEntity>> WARPED_FUNGLING =
-            ENTITIES.register("warped_fungling",
-                    ()->EntityType.Builder.<WarpedFunglingEntity>of(WarpedFunglingEntity::new, EntityClassification.MONSTER)
-                            .sized(0.8F,2.15F)
-                            .build("basalt_arrow"));
+    public static final RegistryObject<EntityType<BasaltDevourerEntity>> BASALT_DEVOURER =
+            ENTITIES.register("basalt_devourer",
+                    ()->EntityType.Builder.<BasaltDevourerEntity>of(BasaltDevourerEntity::new, EntityClassification.MONSTER)
+                            .sized(0.9F,1.5F)
+                            .build("basalt_devourer"));
 
 
 }
