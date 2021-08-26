@@ -5,19 +5,24 @@
 			"loop": true,
 			"animation_length": 1,
 			"bones": {
-				"armorBody": {
+				"Body": {
 					"position": {
 						"vector": [0, "Math.sin((query.anim_time + 3.2) * 360) * 0.04", 0]
 					}
 				},
-				"armorRightArm": {
+				"ArmLeft": {
 					"position": {
-						"vector": ["Math.sin((query.anim_time + 2.3) * 360) * 0.03", "Math.sin((query.anim_time + 4.5) * 360) * 0.02", 0]
+						"vector": ["Math.sin((query.anim_time + 2.3) * 360) * -0.03", "Math.sin((query.anim_time + 4.5) * 360) * -0.02", 0]
 					}
 				},
-				"armorLeftArm": {
+				"Head": {
 					"position": {
-						"vector": ["Math.sin((query.anim_time + 2.3) * 360) * -0.03", "Math.sin((query.anim_time + 4.5) * 360) * 0.02", 0]
+						"vector": [0, "Math.sin((query.anim_time + 3.2) * 360) * 0.04", 0]
+					}
+				},
+				"ArmRight": {
+					"position": {
+						"vector": ["Math.sin((query.anim_time + 2.3) * 360) * 0.03", "Math.sin((query.anim_time + 4.5) * 360) * -0.02", 0]
 					}
 				}
 			}

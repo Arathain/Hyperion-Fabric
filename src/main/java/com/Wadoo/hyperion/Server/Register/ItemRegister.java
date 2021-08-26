@@ -1,10 +1,8 @@
 package com.Wadoo.hyperion.Server.Register;
 
-import com.Wadoo.hyperion.Client.Renderer.DevourerJawsRenderer;
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.Server.Item.Armour.DevourArmourItem;
+import com.Wadoo.hyperion.Server.Item.Armour.DevourArmour;
 import com.Wadoo.hyperion.Server.Item.BasaltArrowItem;
-import com.Wadoo.hyperion.Server.Item.DevourerJawsItem;
 import com.Wadoo.hyperion.Server.Item.HyperionSpawnEggItem;
 import com.Wadoo.hyperion.Server.Utils.Enums.HyperionArmorMaterial;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -28,11 +26,17 @@ public class ItemRegister {
                     new BasaltArrowItem(new Item.Properties().rarity(Rarity.RARE).fireResistant().tab(Hyperion.HYPERION_ITEM_GROUP)));
 
     public static final RegistryObject<Item> DEVOUR_CHESTPLATE = ITEMS.register("devour_chestplate",
-            () -> new DevourArmourItem(HyperionArmorMaterial.DEVOUR, EquipmentSlotType.CHEST));
+            () -> new DevourArmour(HyperionArmorMaterial.DEVOUR, EquipmentSlotType.CHEST));
 
-    public static final RegistryObject<DevourerJawsItem> DEVOURER_JAWS =
-            ITEMS.register("devourer_jaws", () ->
-                    new DevourerJawsItem(new Item.Properties().setISTER(() -> DevourerJawsRenderer::new).rarity(Rarity.UNCOMMON).defaultDurability(200).fireResistant().tab(Hyperion.HYPERION_ITEM_GROUP)));
+    public static final RegistryObject<Item> DEVOUR_LEGGINGS = ITEMS.register("devour_leggings",
+            () -> new DevourArmour(HyperionArmorMaterial.DEVOUR, EquipmentSlotType.LEGS));
+
+    public static final RegistryObject<Item> DEVOUR_HELMET = ITEMS.register("devour_helmet",
+            () -> new DevourArmour(HyperionArmorMaterial.DEVOUR, EquipmentSlotType.HEAD));
+
+    public static final RegistryObject<Item> DEVOUR_BOOTS = ITEMS.register("devour_boots",
+            () -> new DevourArmour(HyperionArmorMaterial.DEVOUR, EquipmentSlotType.FEET));
+
 
     public static final RegistryObject<Item> BASALT_CAPSLING_SPAWN_EGG = ITEMS.register(
             "basalt_capsling_spawn_egg",
@@ -43,4 +47,12 @@ public class ItemRegister {
                    (new Item.Properties().tab(Hyperion.HYPERION_ITEM_GROUP))
             )
     );
+
+    public static final RegistryObject<Item> BASALT_DEVOURER_SPAWN_EGG = ITEMS.register(
+            "basalt_devourer_spawn_egg",
+            () -> new HyperionSpawnEggItem(
+                    EntityRegister.BASALT_DEVOURER::get,
+                    0x858585,
+                    0x3f3f3f,
+                    (new Item.Properties().tab(Hyperion.HYPERION_ITEM_GROUP))));
 }

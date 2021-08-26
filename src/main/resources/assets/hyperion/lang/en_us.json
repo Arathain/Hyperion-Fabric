@@ -4,5 +4,9 @@
 
   "item.hyperion.pure_basalt": "Pure Basalt",
   "item.hyperion.basalt_arrow": "Basalt Arrow",
-  "item.hyperion.basalt_capsling_spawn_egg": "Basalt Capsling Spawn Egg"
+  "item.hyperion.basalt_capsling_spawn_egg": "Basalt Capsling Spawn Egg",
+  "item.hyperion.devour_chestplate": "Basalt Guardian Chestplate",
+  "item.hyperion.devour_helmet": "Basalt Guardian Helmet",
+  "item.hyperion.devour_leggings": "Basalt Guardian Leggings",
+  "item.hyperion.devour_boots": "Basalt Guardian Boots"
 }

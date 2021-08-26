@@ -6,11 +6,11 @@ import com.Wadoo.hyperion.Server.Entity.AI.PureBasaltGoal;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -25,7 +25,9 @@ import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -34,6 +36,8 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+
+import java.util.Random;
 
 public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
@@ -80,7 +84,10 @@ public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable 
         super.defineSynchedData();
         this.entityData.define(OPEN, false);
         this.entityData.define(BASALT, false);
+    }
 
+    public static boolean canSpawn(EntityType<BasaltCapslingEntity> type, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
+        return (pos.getY() > 50);
     }
 
     public boolean getOpen() {

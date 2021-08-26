@@ -1,23 +1,23 @@
 package com.Wadoo.hyperion.Client.Model;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.Server.Item.Armour.DevourArmourItem;
+import com.Wadoo.hyperion.Server.Item.Armour.DevourArmour;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
-public class DevourArmourModel extends AnimatedGeoModel<DevourArmourItem> {
+public class DevourArmourModel extends AnimatedGeoModel<DevourArmour> {
     @Override
-    public ResourceLocation getModelLocation(DevourArmourItem object) {
-        return new ResourceLocation(Hyperion.MOD_ID, "geo/entity/DevourArmour.json");
+    public ResourceLocation getModelLocation(DevourArmour object) {
+        return new ResourceLocation(Hyperion.MOD_ID, "geo/armour/devour_armour.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(DevourArmourItem object) {
-        return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/devour_armour.png");
+    public ResourceLocation getTextureLocation(DevourArmour object) {
+        return new ResourceLocation(Hyperion.MOD_ID, "textures/models/armor/devour_armour_layer_1.png");
     }
 
     @Override
-    public ResourceLocation getAnimationFileLocation(DevourArmourItem animatable) {
-        return new ResourceLocation(Hyperion.MOD_ID, "animations/entity/devour_armour.animations.json");
+    public ResourceLocation getAnimationFileLocation(DevourArmour animatable) {
+        return new ResourceLocation(Hyperion.MOD_ID, "animations/armour/devour_armour.animations.json");
     }
 }

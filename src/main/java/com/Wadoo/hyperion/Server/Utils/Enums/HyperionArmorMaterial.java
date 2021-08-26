@@ -1,6 +1,5 @@
 package com.Wadoo.hyperion.Server.Utils.Enums;
 
-import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Register.ItemRegister;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
@@ -8,11 +7,13 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.function.Supplier;
 
 public enum HyperionArmorMaterial implements IArmorMaterial {
-    DEVOUR(Hyperion.MOD_ID + ":basalt", 8, new int[] { 7, 9, 11, 7 }, 530, SoundEvents.ARMOR_EQUIP_GENERIC, 2.2f, 6.9F, () -> {
+    DEVOUR("hyperion:devour_armour", 8, new int[] { 7, 9, 11, 7 }, 530, SoundEvents.ARMOR_EQUIP_GENERIC, 2.2f, () -> {
         return Ingredient.of(ItemRegister.PURE_BASALT.get());
     });
 
@@ -23,59 +24,51 @@ public enum HyperionArmorMaterial implements IArmorMaterial {
     private final int enchantability;
     private final SoundEvent soundEvent;
     private final float toughness;
-    private final float knockBackResitance;
     private final LazyValue<Ingredient> repairMaterial;
 
-    private HyperionArmorMaterial(String nameIn, int maxDamageFactorIn, int[] damageReductionAmountIn,
-                                  int enchantabilityIn, SoundEvent soundEventIn, float knockBackResistanceIn,
-                                  float toughnessIn, Supplier<Ingredient> repairMaterialIn) {
+    private HyperionArmorMaterial(String nameIn, int maxDamageFactorIn, int[] damageReductionAmountsIn,
+                              int enchantabilityIn, SoundEvent equipSoundIn, float toughnessIn,
+                              Supplier<Ingredient> repairMaterialSupplier) {
         this.name = nameIn;
         this.maxDamageFactor = maxDamageFactorIn;
-        this.damageReductionAmountArray = damageReductionAmountIn;
+        this.damageReductionAmountArray = damageReductionAmountsIn;
         this.enchantability = enchantabilityIn;
-        this.soundEvent = soundEventIn;
+        this.soundEvent = equipSoundIn;
         this.toughness = toughnessIn;
-        this.knockBackResitance = knockBackResistanceIn;
-        this.repairMaterial = new LazyValue<>(repairMaterialIn);
+        this.repairMaterial = new LazyValue<>(repairMaterialSupplier);
     }
 
-    @Override
-    public int getDurabilityForSlot(EquipmentSlotType slotType) {
-        return MAX_DAMAGE_ARRAY[slotType.getIndex()] * this.maxDamageFactor;
+    public int getDurabilityForSlot(EquipmentSlotType slotIn) {
+        return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
     }
 
-    @Override
-    public int getDefenseForSlot(EquipmentSlotType slotType) {
-        return this.damageReductionAmountArray[slotType.getIndex()];
+    public int getDefenseForSlot(EquipmentSlotType slotIn) {
+        return this.damageReductionAmountArray[slotIn.getIndex()];
     }
 
-    @Override
     public int getEnchantmentValue() {
         return this.enchantability;
     }
 
-    @Override
-    public net.minecraft.util.SoundEvent getEquipSound() {
+    public SoundEvent getEquipSound() {
         return this.soundEvent;
     }
 
-    @Override
     public Ingredient getRepairIngredient() {
-        return null;
+        return this.repairMaterial.get();
     }
 
-    @Override
+    @OnlyIn(Dist.CLIENT)
     public String getName() {
-        return null;
+        return this.name;
     }
 
-    @Override
     public float getToughness() {
         return this.toughness;
     }
 
     @Override
     public float getKnockbackResistance() {
-        return this.knockBackResitance;
+        return 0;
     }
 }

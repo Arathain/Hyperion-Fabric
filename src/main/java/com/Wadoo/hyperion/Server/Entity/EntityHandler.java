@@ -1,8 +1,13 @@
 package com.Wadoo.hyperion.Server.Entity;
+
 import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Register.EntityRegister;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -27,6 +32,11 @@ public final class EntityHandler {
                 .add(Attributes.FOLLOW_RANGE, 48.0D)
                 .add(Attributes.ATTACK_DAMAGE, 8.5D)
                 .build());
+    }
+
+    @SubscribeEvent
+    public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {
+        EntitySpawnPlacementRegistry.register(EntityRegister.BASALT_CAPSLING.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BasaltCapslingEntity::canSpawn);
     }
 
 }
