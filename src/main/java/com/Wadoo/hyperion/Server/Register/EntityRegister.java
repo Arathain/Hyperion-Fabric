@@ -22,7 +22,13 @@ public class EntityRegister {
                             .fireImmune()
                             .sized(0.45F,1.0F)
                             .build(new ResourceLocation(Hyperion.MOD_ID, "basalt_capsling").toString()));
-    
+
+    public static final RegistryObject<EntityType<BasaltDevourerEntity>> BASALT_DEVOURER =
+            ENTITIES.register("basalt_devourer",
+                    ()->EntityType.Builder.<BasaltDevourerEntity>of(BasaltDevourerEntity::new, EntityClassification.MONSTER)
+                            .sized(0.9F,1.5F)
+                            .build("basalt_devourer"));
+
     public static final RegistryObject<EntityType<BasaltArrowEntity>> BASALT_ARROW =
             ENTITIES.register("basalt_arrow",
                     ()->EntityType.Builder.<BasaltArrowEntity>of(BasaltArrowEntity::new, EntityClassification.MISC)
@@ -31,12 +37,5 @@ public class EntityRegister {
                             .updateInterval(20)
                             .fireImmune()
                             .build("basalt_arrow"));
-
-    public static final RegistryObject<EntityType<BasaltDevourerEntity>> BASALT_DEVOURER =
-            ENTITIES.register("basalt_devourer",
-                    ()->EntityType.Builder.<BasaltDevourerEntity>of(BasaltDevourerEntity::new, EntityClassification.MONSTER)
-                            .sized(0.9F,1.5F)
-                            .build("basalt_devourer"));
-
 
 }

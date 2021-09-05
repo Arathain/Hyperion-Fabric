@@ -20,7 +20,7 @@ import java.util.Map;
 
 @SuppressWarnings("NullableProblems")
 public class HyperionSpawnEggItem extends SpawnEggItem {
-    private static final List<HyperionSpawnEggItem> UNADDED_EGGS = new ArrayList<>();
+    public static final List<HyperionSpawnEggItem> UNADDED_EGGS = new ArrayList<>();
     private final Lazy<? extends EntityType<?>> entityTypeSupplier;
     private static final Map<EntityType<?>, SpawnEggItem> BY_ID = Maps.newIdentityHashMap();
 

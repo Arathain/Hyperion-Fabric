@@ -6,9 +6,13 @@ import com.Wadoo.hyperion.Client.Renderer.BasaltDevourerRenderer;
 import com.Wadoo.hyperion.Client.Renderer.DevourArmourRenderer;
 import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Item.Armour.DevourArmour;
+import com.Wadoo.hyperion.Server.Item.HyperionSpawnEggItem;
 import com.Wadoo.hyperion.Server.Register.EntityRegister;
+import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -31,5 +35,11 @@ public class ClientListener {
 
         GeoArmorRenderer.registerArmorRenderer(DevourArmour.class, new DevourArmourRenderer());
     }
-    
+
+    @SubscribeEvent
+    public static void itemColors(ColorHandlerEvent.Item event) {
+        ItemColors handler = event.getItemColors();
+        IItemColor eggColor = (stack, tintIndex) -> ((HyperionSpawnEggItem) stack.getItem()).getColor(tintIndex);
+        for (HyperionSpawnEggItem e : HyperionSpawnEggItem.UNADDED_EGGS) handler.register(eggColor, e);
+    }
 }

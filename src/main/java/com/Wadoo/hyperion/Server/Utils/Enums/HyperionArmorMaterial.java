@@ -13,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 public enum HyperionArmorMaterial implements IArmorMaterial {
-    DEVOUR("hyperion:devour_armour", 8, new int[] { 7, 9, 11, 7 }, 530, SoundEvents.ARMOR_EQUIP_GENERIC, 2.2f, () -> {
+    DEVOUR("hyperion:devour_armour", 8, new int[] { 3, 4, 8, 5 }, 530, SoundEvents.ARMOR_EQUIP_GENERIC, 2.2f, () -> {
         return Ingredient.of(ItemRegister.PURE_BASALT.get());
     });
 

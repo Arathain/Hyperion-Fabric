@@ -87,7 +87,7 @@ public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable 
     }
 
     public static boolean canSpawn(EntityType<BasaltCapslingEntity> type, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
-        return (pos.getY() > 50);
+        return true;
     }
 
     public boolean getOpen() {
