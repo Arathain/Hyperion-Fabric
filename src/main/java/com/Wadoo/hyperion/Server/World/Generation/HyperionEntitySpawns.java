@@ -13,7 +13,7 @@ public class HyperionEntitySpawns {
     public static void onBiomesLoad(BiomeLoadingEvent event) {
         System.out.println(event.getName());
                 if(event.getName().toString().equals("minecraft:basalt_deltas")){
-                    event.getSpawns().getSpawner(EntityClassification.MONSTER).add(new MobSpawnInfo.Spawners(EntityRegister.BASALT_CAPSLING.get(), HyperionConfig.BASALT_CAPSLING_WEIGHT.get(), HyperionConfig.BASALT_CAPSLING_MIN.get(), HyperionConfig.BASALT_CAPSLING_MAX.get()));
+                    event.getSpawns().getSpawner(EntityClassification.MONSTER).add(new MobSpawnInfo.Spawners(EntityRegister.CAPSLING.get(), HyperionConfig.BASALT_CAPSLING_WEIGHT.get(), HyperionConfig.BASALT_CAPSLING_MIN.get(), HyperionConfig.BASALT_CAPSLING_MAX.get()));
                 }
     }
 }

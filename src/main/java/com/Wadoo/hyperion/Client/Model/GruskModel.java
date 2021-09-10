@@ -1,23 +1,23 @@
 package com.Wadoo.hyperion.Client.Model;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.Server.Entity.BasaltDevourerEntity;
+import com.Wadoo.hyperion.Server.Entity.GruskEntity;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
-public class BasaltDevourerModel extends AnimatedGeoModel<BasaltDevourerEntity> {
+public class GruskModel extends AnimatedGeoModel<GruskEntity> {
     @Override
-    public ResourceLocation getModelLocation(BasaltDevourerEntity object) {
+    public ResourceLocation getModelLocation(GruskEntity object) {
         return new ResourceLocation(Hyperion.MOD_ID, "geo/entity/basalt_devourer/basalt_devourer.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(BasaltDevourerEntity object) {
+    public ResourceLocation getTextureLocation(GruskEntity object) {
         return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/basalt_devourer/basalt_devourer.png");
     }
 
     @Override
-    public ResourceLocation getAnimationFileLocation(BasaltDevourerEntity animatable) {
+    public ResourceLocation getAnimationFileLocation(GruskEntity animatable) {
         return new ResourceLocation(Hyperion.MOD_ID, "animations/entity/basalt_devourer/basalt_devourer.animations.json");
     }
 

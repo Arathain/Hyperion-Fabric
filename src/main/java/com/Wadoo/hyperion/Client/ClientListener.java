@@ -21,14 +21,14 @@ public class ClientListener {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerRenderers(final FMLClientSetupEvent event) {
-        RenderingRegistry.registerEntityRenderingHandler(EntityRegister.BASALT_CAPSLING.get(),
+        RenderingRegistry.registerEntityRenderingHandler(EntityRegister.CAPSLING.get(),
                 manager -> new CapslingRenderer(manager));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.BASALT_ARROW.get(),
                 manager -> new BasaltArrowRenderer(manager));
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityRegister.BASALT_DEVOURER.get(),
-                manager -> new BasaltDevourerRenderer(manager));
+        RenderingRegistry.registerEntityRenderingHandler(EntityRegister.GRUSK.get(),
+                manager -> new GruskRenderer(manager));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.BASALT_BANNERET.get(),
                 manager -> new BasaltBanneretRenderer(manager));

@@ -17,10 +17,10 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class BasaltDevourerEntity extends MonsterEntity implements IAnimatable {
+public class GruskEntity extends MonsterEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
 
-    public BasaltDevourerEntity(EntityType<? extends MonsterEntity> type, World world) {
+    public GruskEntity(EntityType<? extends MonsterEntity> type, World world) {
         super(type, world);
 
     }
@@ -49,7 +49,7 @@ public class BasaltDevourerEntity extends MonsterEntity implements IAnimatable {
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<BasaltDevourerEntity>(this, "controller", 7, this::predicate));
+        data.addAnimationController(new AnimationController<GruskEntity>(this, "controller", 7, this::predicate));
 
     }
 
@@ -57,14 +57,14 @@ public class BasaltDevourerEntity extends MonsterEntity implements IAnimatable {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(8, new LookAtGoal(this, BasaltDevourerEntity.class, 8.0F));
+        this.goalSelector.addGoal(8, new LookAtGoal(this, GruskEntity.class, 8.0F));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, CapslingEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, MagmaCubeEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, StriderEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, true));
         this.goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0D));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, BasaltDevourerEntity.class)).setAlertOthers());
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, GruskEntity.class)).setAlertOthers());
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.5D, true));
     }
 

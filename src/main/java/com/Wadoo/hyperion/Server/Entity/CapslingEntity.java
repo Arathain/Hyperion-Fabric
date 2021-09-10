@@ -132,7 +132,7 @@ public class CapslingEntity extends CreatureEntity implements IAnimatable {
         this.goalSelector.addGoal(6, new LookAtGoal(this, CapslingEntity.class, 8.0F));
         this.goalSelector.addGoal(2, new MoveToLavaGoal(this, 1.0D));
         this.goalSelector.addGoal(2, new TemptGoal(this, 1.0D, Ingredient.of(Items.BASALT), false));
-        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, BasaltDevourerEntity.class, 6.0F, 1.0D, 1.2D));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, GruskEntity.class, 6.0F, 1.0D, 1.2D));
         this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, BasaltBanneretEntity.class, 6.0F, 1.0D, 1.2D));
         this.goalSelector.addGoal(1, new BasaltOpenGoal(this));
         this.goalSelector.addGoal(1, new PureBasaltGoal(this));

@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 public final class EntityHandler {
     @SubscribeEvent
     public static void EntityAttributeCreationEvent(EntityAttributeCreationEvent event) {
-        event.put(EntityRegister.BASALT_CAPSLING.get(), MobEntity.createMobAttributes()
+        event.put(EntityRegister.CAPSLING.get(), MobEntity.createMobAttributes()
                 .add(Attributes.MAX_HEALTH,5.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.278D)
                 .add(Attributes.KNOCKBACK_RESISTANCE,0.3D)
@@ -24,7 +24,7 @@ public final class EntityHandler {
                 .add(Attributes.FOLLOW_RANGE, 28.0D)
                 .build());
 
-        event.put(EntityRegister.BASALT_DEVOURER.get(), MobEntity.createMobAttributes()
+        event.put(EntityRegister.GRUSK.get(), MobEntity.createMobAttributes()
                 .add(Attributes.MAX_HEALTH,35.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.251D)
                 .add(Attributes.KNOCKBACK_RESISTANCE,0.3D)
@@ -45,7 +45,7 @@ public final class EntityHandler {
 
     @SubscribeEvent
     public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {
-        EntitySpawnPlacementRegistry.register(EntityRegister.BASALT_CAPSLING.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, CapslingEntity::canSpawn);
+        EntitySpawnPlacementRegistry.register(EntityRegister.CAPSLING   .get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, CapslingEntity::canSpawn);
     }
 
 }

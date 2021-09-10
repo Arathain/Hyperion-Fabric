@@ -4,7 +4,7 @@ import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Entity.BasaltArrowEntity;
 import com.Wadoo.hyperion.Server.Entity.BasaltBanneretEntity;
 import com.Wadoo.hyperion.Server.Entity.CapslingEntity;
-import com.Wadoo.hyperion.Server.Entity.BasaltDevourerEntity;
+import com.Wadoo.hyperion.Server.Entity.GruskEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -17,18 +17,18 @@ public class EntityRegister {
     public static final DeferredRegister<EntityType<?>> ENTITIES
             = DeferredRegister.create(ForgeRegistries.ENTITIES, Hyperion.MOD_ID);
 
-    public static final RegistryObject<EntityType<CapslingEntity>> BASALT_CAPSLING =
+    public static final RegistryObject<EntityType<CapslingEntity>> CAPSLING =
             ENTITIES.register("capsling",
                     ()->EntityType.Builder.of(CapslingEntity::new, EntityClassification.CREATURE)
                             .fireImmune()
                             .sized(0.45F,1.0F)
                             .build(new ResourceLocation(Hyperion.MOD_ID, "capsling").toString()));
 
-    public static final RegistryObject<EntityType<BasaltDevourerEntity>> BASALT_DEVOURER =
+    public static final RegistryObject<EntityType<GruskEntity>> GRUSK =
             ENTITIES.register("basalt_devourer",
-                    ()->EntityType.Builder.<BasaltDevourerEntity>of(BasaltDevourerEntity::new, EntityClassification.MONSTER)
+                    ()->EntityType.Builder.<GruskEntity>of(GruskEntity::new, EntityClassification.MONSTER)
                             .sized(0.9F,1.5F)
-                            .build("basalt_devourer"));
+                            .build("grusk"));
 
     public static final RegistryObject<EntityType<BasaltBanneretEntity>> BASALT_BANNERET =
             ENTITIES.register("basalt_banneret",

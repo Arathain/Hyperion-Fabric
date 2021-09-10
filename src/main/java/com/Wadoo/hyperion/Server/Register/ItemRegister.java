@@ -21,18 +21,18 @@ public class ItemRegister {
             ITEMS.register("basalt_arrow", () ->
                     new BasaltArrowItem(new Item.Properties().fireResistant().tab(Hyperion.HYPERION_ITEM_GROUP)));
 
-    public static final RegistryObject<Item> BASALT_CAPSLING_SPAWN_EGG = ITEMS.register(
-            "basalt_capsling_spawn_egg",
+    public static final RegistryObject<Item> CAPSLING_SPAWN_EGG = ITEMS.register(
+            "capsling_spawn_egg",
             () -> new HyperionSpawnEggItem(
-                    EntityRegister.BASALT_CAPSLING::get,
+                    EntityRegister.CAPSLING::get,
                     0x868686,
                     0x3f3f4e,
                     (new Item.Properties().tab(Hyperion.HYPERION_ITEM_GROUP))));
 
-    public static final RegistryObject<Item> BASALT_DEVOURER_SPAWN_EGG = ITEMS.register(
-            "basalt_devourer_spawn_egg",
+    public static final RegistryObject<Item> GRUSK_SPAWN_EGG = ITEMS.register(
+            "grusk_spawn_egg",
             () -> new HyperionSpawnEggItem(
-                    EntityRegister.BASALT_DEVOURER::get,
+                    EntityRegister.GRUSK::get,
                     0x696969,
                     0x1e2a37,
                     (new Item.Properties().tab(Hyperion.HYPERION_ITEM_GROUP))));
