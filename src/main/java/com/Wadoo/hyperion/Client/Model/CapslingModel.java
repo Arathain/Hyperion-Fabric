@@ -1,36 +1,33 @@
 package com.Wadoo.hyperion.Client.Model;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.Server.Entity.BasaltCapslingEntity;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
+import com.Wadoo.hyperion.Server.Entity.CapslingEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
-import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
-import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
-public class BasaltCapslingModel extends AnimatedGeoModel<BasaltCapslingEntity> {
+public class CapslingModel extends AnimatedGeoModel<CapslingEntity> {
 
     @Override
-    public ResourceLocation getModelLocation(BasaltCapslingEntity object) {
+    public ResourceLocation getModelLocation(CapslingEntity object) {
         return new ResourceLocation(Hyperion.MOD_ID, "geo/entity/basalt_capsling/basalt_capsling.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(BasaltCapslingEntity object) {
+    public ResourceLocation getTextureLocation(CapslingEntity object) {
         return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/basalt_capsling/basalt_capsling.png");
     }
 
     @Override
-    public ResourceLocation getAnimationFileLocation(BasaltCapslingEntity animatable) {
+    public ResourceLocation getAnimationFileLocation(CapslingEntity animatable) {
         return new ResourceLocation(Hyperion.MOD_ID, "animations/entity/basalt_capsling/basalt_capsling.animations.json");
     }
 
     @Override
-    public void setLivingAnimations(BasaltCapslingEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
+    public void setLivingAnimations(CapslingEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
         IBone Head = this.getAnimationProcessor().getBone("Jaw");
 

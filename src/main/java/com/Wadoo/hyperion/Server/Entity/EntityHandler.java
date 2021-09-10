@@ -32,11 +32,20 @@ public final class EntityHandler {
                 .add(Attributes.FOLLOW_RANGE, 48.0D)
                 .add(Attributes.ATTACK_DAMAGE, 8.5D)
                 .build());
+
+        event.put(EntityRegister.BASALT_BANNERET.get(), MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH,125.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.18001D)
+                .add(Attributes.KNOCKBACK_RESISTANCE,0.3D)
+                .add(Attributes.ARMOR, 6.0D)
+                .add(Attributes.FOLLOW_RANGE, 48.0D)
+                .add(Attributes.ATTACK_DAMAGE, 8.5D)
+                .build());
     }
 
     @SubscribeEvent
     public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {
-        EntitySpawnPlacementRegistry.register(EntityRegister.BASALT_CAPSLING.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BasaltCapslingEntity::canSpawn);
+        EntitySpawnPlacementRegistry.register(EntityRegister.BASALT_CAPSLING.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, CapslingEntity::canSpawn);
     }
 
 }

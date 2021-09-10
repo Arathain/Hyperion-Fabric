@@ -1,9 +1,6 @@
 package com.Wadoo.hyperion.Client;
 
-import com.Wadoo.hyperion.Client.Renderer.BasaltArrowRenderer;
-import com.Wadoo.hyperion.Client.Renderer.BasaltCapslingRenderer;
-import com.Wadoo.hyperion.Client.Renderer.BasaltDevourerRenderer;
-import com.Wadoo.hyperion.Client.Renderer.DevourArmourRenderer;
+import com.Wadoo.hyperion.Client.Renderer.*;
 import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Item.Armour.DevourArmour;
 import com.Wadoo.hyperion.Server.Item.HyperionSpawnEggItem;
@@ -25,13 +22,16 @@ public class ClientListener {
     @SubscribeEvent
     public static void registerRenderers(final FMLClientSetupEvent event) {
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.BASALT_CAPSLING.get(),
-                manager -> new BasaltCapslingRenderer(manager));
+                manager -> new CapslingRenderer(manager));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.BASALT_ARROW.get(),
                 manager -> new BasaltArrowRenderer(manager));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.BASALT_DEVOURER.get(),
                 manager -> new BasaltDevourerRenderer(manager));
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityRegister.BASALT_BANNERET.get(),
+                manager -> new BasaltBanneretRenderer(manager));
 
         GeoArmorRenderer.registerArmorRenderer(DevourArmour.class, new DevourArmourRenderer());
     }

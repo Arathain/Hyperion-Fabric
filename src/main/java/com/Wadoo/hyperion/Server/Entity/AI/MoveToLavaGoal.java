@@ -1,17 +1,16 @@
 package com.Wadoo.hyperion.Server.Entity.AI;
 
-import com.Wadoo.hyperion.Server.Entity.BasaltCapslingEntity;
+import com.Wadoo.hyperion.Server.Entity.CapslingEntity;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
-import net.minecraft.entity.passive.StriderEntity;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 
 public class MoveToLavaGoal extends MoveToBlockGoal {
-    private final BasaltCapslingEntity entity;
+    private final CapslingEntity entity;
 
-    public MoveToLavaGoal(BasaltCapslingEntity entity, double speedModifier) {
+    public MoveToLavaGoal(CapslingEntity entity, double speedModifier) {
         super(entity, speedModifier, 8, 2);
         this.entity = entity;
     }

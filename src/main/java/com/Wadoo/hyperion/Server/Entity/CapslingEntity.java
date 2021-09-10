@@ -39,12 +39,12 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.Random;
 
-public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable {
+public class CapslingEntity extends CreatureEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
-    private static final DataParameter<Boolean> OPEN = EntityDataManager.defineId(BasaltCapslingEntity.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> BASALT = EntityDataManager.defineId(BasaltCapslingEntity.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> OPEN = EntityDataManager.defineId(CapslingEntity.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> BASALT = EntityDataManager.defineId(CapslingEntity.class, DataSerializers.BOOLEAN);
 
-    public BasaltCapslingEntity(EntityType<? extends CreatureEntity> type, World world) {
+    public CapslingEntity(EntityType<? extends CreatureEntity> type, World world) {
         super(type, world);
 
         this.setPathfindingMalus(PathNodeType.WATER, -1.0F);
@@ -86,7 +86,7 @@ public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable 
         this.entityData.define(BASALT, false);
     }
 
-    public static boolean canSpawn(EntityType<BasaltCapslingEntity> type, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
+    public static boolean canSpawn(EntityType<CapslingEntity> type, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
         return true;
     }
 
@@ -120,8 +120,8 @@ public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable 
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<BasaltCapslingEntity>(this, "controller", 0, this::predicate));
-        data.addAnimationController(new AnimationController<BasaltCapslingEntity>(this, "controllerOpen", 7, this::predicateOpen));
+        data.addAnimationController(new AnimationController<CapslingEntity>(this, "controller", 0, this::predicate));
+        data.addAnimationController(new AnimationController<CapslingEntity>(this, "controllerOpen", 7, this::predicateOpen));
     }
 
     @Override
@@ -129,10 +129,11 @@ public class BasaltCapslingEntity extends CreatureEntity implements IAnimatable 
         super.registerGoals();
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 0.8D));
-        this.goalSelector.addGoal(6, new LookAtGoal(this, BasaltCapslingEntity.class, 8.0F));
+        this.goalSelector.addGoal(6, new LookAtGoal(this, CapslingEntity.class, 8.0F));
         this.goalSelector.addGoal(2, new MoveToLavaGoal(this, 1.0D));
         this.goalSelector.addGoal(2, new TemptGoal(this, 1.0D, Ingredient.of(Items.BASALT), false));
         this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, BasaltDevourerEntity.class, 6.0F, 1.0D, 1.2D));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, BasaltBanneretEntity.class, 6.0F, 1.0D, 1.2D));
         this.goalSelector.addGoal(1, new BasaltOpenGoal(this));
         this.goalSelector.addGoal(1, new PureBasaltGoal(this));
     }

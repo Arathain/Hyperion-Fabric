@@ -1,17 +1,16 @@
 package com.Wadoo.hyperion.Server.Entity.AI;
 
-import com.Wadoo.hyperion.Server.Entity.BasaltCapslingEntity;
+import com.Wadoo.hyperion.Server.Entity.CapslingEntity;
 import com.Wadoo.hyperion.Server.Register.ItemRegister;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
 
 public class PureBasaltGoal extends Goal {
-    private final BasaltCapslingEntity entity;
+    private final CapslingEntity entity;
     private int basaltTimer = 0;
-    public PureBasaltGoal(BasaltCapslingEntity entity){
+    public PureBasaltGoal(CapslingEntity entity){
         this.entity = entity;
     }
     @Override
