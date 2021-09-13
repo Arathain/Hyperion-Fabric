@@ -6,11 +6,11 @@ issueTrackerURL="https://github.com/Wadoo-Gazoono/Hyperion/issues" #optional
  
 [[mods]] #mandatory
 modId="hyperion"
-version="0.0.1"
+version="0.0.3"
 displayName="Hyperion"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/hyperion"
 logoFile="hyperion.png"
-authors="Wadoo, Virtualhel, and Naz"
+authors="Wadoo, Virtualhel, and VakyPanda"
 description='''
 A Nether mod that adds new and interesting mechanics, mobs, and more!
 ''' #mandatory

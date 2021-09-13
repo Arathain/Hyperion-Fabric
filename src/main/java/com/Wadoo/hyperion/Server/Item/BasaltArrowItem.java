@@ -2,14 +2,19 @@ package com.Wadoo.hyperion.Server.Item;
 
 import com.Wadoo.hyperion.Server.Entity.BasaltArrowEntity;
 import com.Wadoo.hyperion.Server.Register.EntityRegister;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ArrowItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.*;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ArrowItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -20,19 +25,21 @@ public class BasaltArrowItem extends ArrowItem {
         super(properties);
     }
 
-    public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity shooter) {
+    public AbstractArrow createArrow(Level worldIn, ItemStack stack, LivingEntity shooter) {
         return new BasaltArrowEntity(EntityRegister.BASALT_ARROW.get(), shooter, worldIn);
     }
 
-    public boolean isInfinite(ItemStack stack, ItemStack bow, net.minecraft.entity.player.PlayerEntity player) {
-        int enchant = net.minecraft.enchantment.EnchantmentHelper.getItemEnchantmentLevel(net.minecraft.enchantment.Enchantments.INFINITY_ARROWS, bow);
+    public boolean isInfinite(ItemStack stack, ItemStack bow, Player player) {
+        int enchant = net.minecraft.world.item.enchantment.EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, bow);
         return enchant <= 0 ? false : this.getClass() == BasaltArrowItem.class;
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        tooltip.add(new StringTextComponent("Travels shorter distances").setStyle(Style.EMPTY.withColor(Color.fromLegacyFormat(TextFormatting.GRAY)).withItalic(true)));
-        tooltip.add(new StringTextComponent("Deals more damage the more armour your target has").setStyle(Style.EMPTY.withColor(Color.fromLegacyFormat(TextFormatting.GRAY)).withItalic(true)));
+        tooltip.add(new TextComponent("Travels shorter distances").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY).withItalic(true)));
+        tooltip.add(new TextComponent("Deals more damage the more armour your target has").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY).withItalic(true)));
     }
+
+
 }

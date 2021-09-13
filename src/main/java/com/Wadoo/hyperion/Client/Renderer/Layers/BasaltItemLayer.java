@@ -15,6 +15,9 @@ import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.renderers.geo.GeoLayerRenderer;
 import software.bernie.geckolib3.renderers.geo.IGeoRenderer;
 
+import EntityModel;
+import LivingEntity;
+
 @OnlyIn(Dist.CLIENT)
 public class BasaltItemLayer<T extends LivingEntity & IAnimatable, M extends EntityModel<T>> extends GeoLayerRenderer<T> {
     public BasaltItemLayer(IGeoRenderer<T> geoRenderer) {

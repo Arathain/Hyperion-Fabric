@@ -9,6 +9,9 @@ import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
+
+import ResourceLocation;
+
 public class BasaltBanneretModel extends AnimatedGeoModel<BasaltBanneretEntity> {
     @Override
     public ResourceLocation getModelLocation(BasaltBanneretEntity object) {

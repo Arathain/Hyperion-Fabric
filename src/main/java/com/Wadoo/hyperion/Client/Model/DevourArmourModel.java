@@ -5,6 +5,9 @@ import com.Wadoo.hyperion.Server.Item.Armour.DevourArmour;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
+
+import ResourceLocation;
+
 public class DevourArmourModel extends AnimatedGeoModel<DevourArmour> {
     @Override
     public ResourceLocation getModelLocation(DevourArmour object) {

@@ -5,6 +5,9 @@ import com.Wadoo.hyperion.Server.Entity.GruskEntity;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
+
+import ResourceLocation;
+
 public class GruskModel extends AnimatedGeoModel<GruskEntity> {
     @Override
     public ResourceLocation getModelLocation(GruskEntity object) {

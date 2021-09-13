@@ -1,11 +1,11 @@
 package com.Wadoo.hyperion.Server.Entity.AI;
 
 import com.Wadoo.hyperion.Server.Entity.CapslingEntity;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.ai.goal.MoveToBlockGoal;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.pathfinder.PathComputationType;
 
 public class MoveToLavaGoal extends MoveToBlockGoal {
     private final CapslingEntity entity;
@@ -31,7 +31,7 @@ public class MoveToLavaGoal extends MoveToBlockGoal {
         return this.tryTicks % 20 == 0;
     }
 
-    protected boolean isValidTarget(IWorldReader worldReader, BlockPos blockPos) {
-        return worldReader.getBlockState(blockPos).is(Blocks.LAVA) && worldReader.getBlockState(blockPos.above()).isPathfindable(worldReader, blockPos, PathType.LAND);
+    protected boolean isValidTarget(LevelReader worldReader, BlockPos blockPos) {
+        return worldReader.getBlockState(blockPos).is(Blocks.LAVA) && worldReader.getBlockState(blockPos.above()).isPathfindable(worldReader, blockPos, PathComputationType.LAND);
     }
 }

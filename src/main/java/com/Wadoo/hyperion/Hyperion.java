@@ -5,9 +5,9 @@ import com.Wadoo.hyperion.Server.Item.HyperionSpawnEggItem;
 import com.Wadoo.hyperion.Server.Register.EntityRegister;
 import com.Wadoo.hyperion.Server.Register.ItemRegister;
 import com.Wadoo.hyperion.Server.World.Generation.HyperionEntitySpawns;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -23,12 +23,13 @@ import software.bernie.geckolib3.GeckoLib;
 import javax.annotation.Nonnull;
 
 // The value here should match an entry in the META-INF/mods.toml file
+
 @Mod("hyperion")
 public class Hyperion
 {
     public static final String MOD_ID = "hyperion";
     private static final Logger LOGGER = LogManager.getLogger();
-    public static final ItemGroup HYPERION_ITEM_GROUP = new ItemGroup("hyperion_tab") {
+    public static final CreativeModeTab HYPERION_ITEM_GROUP = new CreativeModeTab("hyperion_tab") {
         @Nonnull
         @Override
         public ItemStack makeIcon() {

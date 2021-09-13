@@ -39,7 +39,7 @@ public class CapslingRenderer extends GeoEntityRenderer<CapslingEntity> {
     @Override
     public void renderRecursively(GeoBone bone, MatrixStack stack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         if (bone.getName().equals("Item")) {
-            stack.pushPose();
+            stack.push();
             stack.translate(0.0D, 0.55D, 0.0D);
             stack.mulPose(Vector3f.XP.rotationDegrees(180.0F));
             stack.scale(0.5f, 0.5f, 0.5f);
