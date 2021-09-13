@@ -153,7 +153,7 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
             if (iselectioncontext.isAbove(LiquidBlock.STABLE_SHAPE, this.blockPosition(), true) && !this.level.getFluidState(this.blockPosition().above()).is(FluidTags.LAVA)) {
                 this.onGround = true;
             } else {
-                this.setDeltaMovement(this.getDeltaMovement().scale(0.5D).add(0.0D, 0.2D, 0.0D));
+                this.setDeltaMovement(this.getDeltaMovement().scale(0.5D).add(0.0D, 0.22D, 0.0D));
                 this.setSpeed(1.2f);
             }
         }
