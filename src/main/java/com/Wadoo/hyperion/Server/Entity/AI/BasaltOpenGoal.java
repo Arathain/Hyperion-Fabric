@@ -1,12 +1,10 @@
 package com.Wadoo.hyperion.Server.Entity.AI;
 
 import com.Wadoo.hyperion.Server.Entity.CapslingEntity;
-
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Items;
 
 public class BasaltOpenGoal extends Goal {
     protected final CapslingEntity entity;
@@ -40,10 +38,11 @@ public class BasaltOpenGoal extends Goal {
         }
     }
 
+
     @Override
     public void tick() {
         super.tick();
-        if (this.player.distanceToSqr(this.entity) < 20.0D && this.player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND).getItem() == Items.BASALT) {
+        if (this.player.distanceToSqr(this.entity) < 20.0D && this.entity.getCapslingAcceptedItems().test(this.player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND))){
             if(!entity.getBasalt()) {
                 this.entity.setOpen(true);
             }

@@ -37,5 +37,4 @@ public class ItemRegister {
                     0x1e2a37,
                     (new Item.Properties().tab(Hyperion.HYPERION_ITEM_GROUP))));
 
-
 }

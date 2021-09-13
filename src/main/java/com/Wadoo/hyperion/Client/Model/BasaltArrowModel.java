@@ -2,11 +2,9 @@ package com.Wadoo.hyperion.Client.Model;
 
 import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Entity.BasaltArrowEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
-
-import ResourceLocation;
 
 public class BasaltArrowModel extends AnimatedGeoModel<BasaltArrowEntity> {
     @Override

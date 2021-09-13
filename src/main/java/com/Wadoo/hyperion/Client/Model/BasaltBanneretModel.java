@@ -2,15 +2,14 @@ package com.Wadoo.hyperion.Client.Model;
 
 import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Entity.BasaltBanneretEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 
-import ResourceLocation;
 
 public class BasaltBanneretModel extends AnimatedGeoModel<BasaltBanneretEntity> {
     @Override

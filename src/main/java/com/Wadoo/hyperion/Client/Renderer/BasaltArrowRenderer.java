@@ -2,17 +2,11 @@ package com.Wadoo.hyperion.Client.Renderer;
 
 import com.Wadoo.hyperion.Client.Model.BasaltArrowModel;
 import com.Wadoo.hyperion.Server.Entity.BasaltArrowEntity;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3f;
-import software.bernie.geckolib3.core.processor.IBone;
-import software.bernie.geckolib3.geo.render.built.GeoBone;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import software.bernie.geckolib3.geo.render.built.GeoModel;
 import software.bernie.geckolib3.renderers.geo.GeoProjectilesRenderer;
 
@@ -20,12 +14,12 @@ import javax.annotation.Nullable;
 
 public class BasaltArrowRenderer extends GeoProjectilesRenderer<BasaltArrowEntity> {
 
-    public BasaltArrowRenderer(EntityRendererManager renderManager) {
+    public BasaltArrowRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new BasaltArrowModel());
     }
 
     @Override
-    public void render(GeoModel model, BasaltArrowEntity animatable, float partialTicks, RenderType type, MatrixStack matrixStackIn, @Nullable IRenderTypeBuffer renderTypeBuffer, @Nullable IVertexBuilder vertexBuilder, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
+    public void render(GeoModel model, BasaltArrowEntity animatable, float partialTicks, RenderType type, PoseStack matrixStackIn, @Nullable MultiBufferSource renderTypeBuffer, @Nullable VertexConsumer vertexBuilder, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         super.render(model, animatable, partialTicks, type, matrixStackIn, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn, red, green, blue, alpha);
         matrixStackIn.pushPose();
         matrixStackIn.popPose();

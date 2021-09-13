@@ -43,10 +43,9 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     private static final EntityDataAccessor<Boolean> OPEN = SynchedEntityData.defineId(CapslingEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> BASALT = SynchedEntityData.defineId(CapslingEntity.class, EntityDataSerializers.BOOLEAN);
-
+    private Ingredient CapslingAcceptedItems = Ingredient.of(Items.BASALT, Items.POLISHED_BASALT, Items.SMOOTH_BASALT);
     public CapslingEntity(EntityType<? extends PathfinderMob> type, Level world) {
         super(type, world);
-
         this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
         this.setPathfindingMalus(BlockPathTypes.LAVA, 0.0F);
         this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, 0.0F);
@@ -104,6 +103,10 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
 
     public void setBasalt(boolean basalt){
         this.entityData.set(BASALT, basalt);
+    }
+
+    public Ingredient getCapslingAcceptedItems() {
+        return CapslingAcceptedItems;
     }
 
     @Override
@@ -164,9 +167,9 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
 
     @Override
     protected InteractionResult mobInteract(Player player, InteractionHand hand) {
-        ItemStack itemStack = player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND);
+        ItemStack itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
         if(!getBasalt()) {
-            if (itemStack.getItem() == Items.BASALT) {
+            if (this.CapslingAcceptedItems.test(itemStack)) {
                 this.setItemSlot(EquipmentSlot.MAINHAND, itemStack);
                 itemStack.shrink(1);
                 setBasalt(true);
