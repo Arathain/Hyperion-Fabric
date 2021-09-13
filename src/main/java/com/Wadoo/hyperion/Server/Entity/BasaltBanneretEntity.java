@@ -1,20 +1,21 @@
 package com.Wadoo.hyperion.Server.Entity;
 
 import com.Wadoo.hyperion.Server.Entity.AI.BanneretAttackGoal;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.ai.goal.RandomWalkingGoal;
-import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
-import net.minecraft.entity.monster.MagmaCubeEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.StriderEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.world.World;
+
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.MagmaCube;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Strider;
+import net.minecraft.world.entity.npc.AbstractVillager;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -23,11 +24,11 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class BasaltBanneretEntity extends MonsterEntity implements IAnimatable {
+public class BasaltBanneretEntity extends Monster implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
-    private static final DataParameter<Integer> ATTACK_STATE = EntityDataManager.defineId(BasaltBanneretEntity.class, DataSerializers.INT);
+    private static final EntityDataAccessor<Integer> ATTACK_STATE = SynchedEntityData.defineId(BasaltBanneretEntity.class, EntityDataSerializers.INT);
 
-    public BasaltBanneretEntity(EntityType<? extends MonsterEntity> type, World world) {
+    public BasaltBanneretEntity(EntityType<? extends Monster> type, Level world) {
         super(type, world);
 
     }
@@ -73,14 +74,14 @@ public class BasaltBanneretEntity extends MonsterEntity implements IAnimatable {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(8, new LookAtGoal(this, BasaltBanneretEntity.class, 8.0F));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, BasaltBanneretEntity.class, 8.0F));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, CapslingEntity.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, MagmaCubeEntity.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, StriderEntity.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, true));
-        this.goalSelector.addGoal(5, new RandomWalkingGoal(this, 1.0D));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, MagmaCube.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Strider.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
+        this.goalSelector.addGoal(5, new RandomStrollGoal(this, 1.0D));
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, BasaltBanneretEntity.class)).setAlertOthers());
         this.goalSelector.addGoal(2, new BanneretAttackGoal(this, 1.5D, true, 40, 40));
 

@@ -2,7 +2,7 @@ package com.Wadoo.hyperion.Client.Model;
 
 import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Entity.GruskEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class GruskModel extends AnimatedGeoModel<GruskEntity> {

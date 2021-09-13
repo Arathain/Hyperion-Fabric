@@ -1,9 +1,8 @@
 package com.Wadoo.hyperion.Server.Entity.AI;
 
 import com.Wadoo.hyperion.Server.Entity.BasaltBanneretEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.util.Hand;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.Goal;
 
 public class BanneretAttackGoal extends Goal {
     protected BasaltBanneretEntity entity;
@@ -63,7 +62,6 @@ public class BanneretAttackGoal extends Goal {
 
     public void checkAndAttack(BasaltBanneretEntity entity, LivingEntity target){
         if(this.entity.distanceToSqr(target) < this.getAttackReachSqr(this.entity)){
-            this.entity.swing(Hand.MAIN_HAND);
             this.entity.doHurtTarget(target);
         }
 

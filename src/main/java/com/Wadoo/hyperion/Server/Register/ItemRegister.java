@@ -3,8 +3,8 @@ package com.Wadoo.hyperion.Server.Register;
 import com.Wadoo.hyperion.Hyperion;
 import com.Wadoo.hyperion.Server.Item.BasaltArrowItem;
 import com.Wadoo.hyperion.Server.Item.HyperionSpawnEggItem;
-import net.minecraft.item.Item;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -19,7 +19,7 @@ public class ItemRegister {
 
     public static final RegistryObject<BasaltArrowItem> BASALT_ARROW =
             ITEMS.register("basalt_arrow", () ->
-                    new BasaltArrowItem(new Item.Properties().fireResistant().tab(Hyperion.HYPERION_ITEM_GROUP)));
+                    new BasaltArrowItem (new Item.Properties().tab(Hyperion.HYPERION_ITEM_GROUP)));
 
     public static final RegistryObject<Item> CAPSLING_SPAWN_EGG = ITEMS.register(
             "capsling_spawn_egg",
@@ -36,6 +36,5 @@ public class ItemRegister {
                     0x696969,
                     0x1e2a37,
                     (new Item.Properties().tab(Hyperion.HYPERION_ITEM_GROUP))));
-
 
 }

@@ -5,10 +5,9 @@ import com.Wadoo.hyperion.Server.Entity.BasaltArrowEntity;
 import com.Wadoo.hyperion.Server.Entity.BasaltBanneretEntity;
 import com.Wadoo.hyperion.Server.Entity.CapslingEntity;
 import com.Wadoo.hyperion.Server.Entity.GruskEntity;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntityType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -19,26 +18,26 @@ public class EntityRegister {
 
     public static final RegistryObject<EntityType<CapslingEntity>> CAPSLING =
             ENTITIES.register("capsling",
-                    ()->EntityType.Builder.of(CapslingEntity::new, EntityClassification.CREATURE)
+                    ()->EntityType.Builder.of(CapslingEntity::new, MobCategory.CREATURE)
                             .fireImmune()
                             .sized(0.45F,1.0F)
-                            .build(new ResourceLocation(Hyperion.MOD_ID, "capsling").toString()));
+                            .build("capsling"));
 
     public static final RegistryObject<EntityType<GruskEntity>> GRUSK =
             ENTITIES.register("basalt_devourer",
-                    ()->EntityType.Builder.<GruskEntity>of(GruskEntity::new, EntityClassification.MONSTER)
+                    ()->EntityType.Builder.<GruskEntity>of(GruskEntity::new, MobCategory.MONSTER)
                             .sized(0.9F,1.5F)
                             .build("grusk"));
 
     public static final RegistryObject<EntityType<BasaltBanneretEntity>> BASALT_BANNERET =
             ENTITIES.register("basalt_banneret",
-                    ()->EntityType.Builder.<BasaltBanneretEntity>of(BasaltBanneretEntity::new, EntityClassification.MONSTER)
+                    ()->EntityType.Builder.<BasaltBanneretEntity>of(BasaltBanneretEntity::new, MobCategory.MONSTER)
                             .sized(1.43F,4.1F)
                             .build("basalt_devourer"));
 
     public static final RegistryObject<EntityType<BasaltArrowEntity>> BASALT_ARROW =
             ENTITIES.register("basalt_arrow",
-                    ()->EntityType.Builder.<BasaltArrowEntity>of(BasaltArrowEntity::new, EntityClassification.MISC)
+                    ()->EntityType.Builder.<BasaltArrowEntity>of(BasaltArrowEntity::new, MobCategory.MISC)
                             .sized(0.25F,0.25F)
                             .clientTrackingRange(4)
                             .updateInterval(20)

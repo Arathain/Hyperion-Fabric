@@ -3,32 +3,32 @@ package com.Wadoo.hyperion.Server.Entity;
 import com.Wadoo.hyperion.Server.Entity.AI.BasaltOpenGoal;
 import com.Wadoo.hyperion.Server.Entity.AI.MoveToLavaGoal;
 import com.Wadoo.hyperion.Server.Entity.AI.PureBasaltGoal;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.RandomWalkingGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -39,18 +39,17 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.Random;
 
-public class CapslingEntity extends CreatureEntity implements IAnimatable {
+public class CapslingEntity extends PathfinderMob implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
-    private static final DataParameter<Boolean> OPEN = EntityDataManager.defineId(CapslingEntity.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> BASALT = EntityDataManager.defineId(CapslingEntity.class, DataSerializers.BOOLEAN);
-
-    public CapslingEntity(EntityType<? extends CreatureEntity> type, World world) {
+    private static final EntityDataAccessor<Boolean> OPEN = SynchedEntityData.defineId(CapslingEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> BASALT = SynchedEntityData.defineId(CapslingEntity.class, EntityDataSerializers.BOOLEAN);
+    private Ingredient CapslingAcceptedItems = Ingredient.of(Items.BASALT, Items.POLISHED_BASALT, Items.SMOOTH_BASALT);
+    public CapslingEntity(EntityType<? extends PathfinderMob> type, Level world) {
         super(type, world);
-
-        this.setPathfindingMalus(PathNodeType.WATER, -1.0F);
-        this.setPathfindingMalus(PathNodeType.LAVA, 0.0F);
-        this.setPathfindingMalus(PathNodeType.DANGER_FIRE, 0.0F);
-        this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, 0.0F);
+        this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
+        this.setPathfindingMalus(BlockPathTypes.LAVA, 0.0F);
+        this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, 0.0F);
+        this.setPathfindingMalus(BlockPathTypes.DAMAGE_FIRE, 0.0F);
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
@@ -86,7 +85,7 @@ public class CapslingEntity extends CreatureEntity implements IAnimatable {
         this.entityData.define(BASALT, false);
     }
 
-    public static boolean canSpawn(EntityType<CapslingEntity> type, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
+    public static boolean canSpawn(EntityType<CapslingEntity> type, ServerLevelAccessor world, MobSpawnType spawnReason, BlockPos pos, Random random) {
         return true;
     }
 
@@ -106,14 +105,18 @@ public class CapslingEntity extends CreatureEntity implements IAnimatable {
         this.entityData.set(BASALT, basalt);
     }
 
+    public Ingredient getCapslingAcceptedItems() {
+        return CapslingAcceptedItems;
+    }
+
     @Override
-    public void addAdditionalSaveData(CompoundNBT NBT) {
+    public void addAdditionalSaveData(CompoundTag NBT) {
         super.addAdditionalSaveData(NBT);
         NBT.putBoolean("Basalt", this.getBasalt());
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT NBT) {
+    public void readAdditionalSaveData(CompoundTag NBT) {
         super.readAdditionalSaveData(NBT);
         setBasalt(NBT.getBoolean("Basalt"));
     }
@@ -127,13 +130,14 @@ public class CapslingEntity extends CreatureEntity implements IAnimatable {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 0.8D));
-        this.goalSelector.addGoal(6, new LookAtGoal(this, CapslingEntity.class, 8.0F));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(7, new RandomStrollGoal(this, 0.8D));
+        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, CapslingEntity.class, 8.0F));
         this.goalSelector.addGoal(2, new MoveToLavaGoal(this, 1.0D));
         this.goalSelector.addGoal(2, new TemptGoal(this, 1.0D, Ingredient.of(Items.BASALT), false));
-        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, GruskEntity.class, 6.0F, 1.0D, 1.2D));
-        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, BasaltBanneretEntity.class, 6.0F, 1.0D, 1.2D));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, GruskEntity.class, 8.0F, 1.6D, 1.4D, (p_28590_) -> {
+            return !this.getBasalt();
+        }));        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, BasaltBanneretEntity.class, 6.0F, 1.0D, 1.2D));
         this.goalSelector.addGoal(1, new BasaltOpenGoal(this));
         this.goalSelector.addGoal(1, new PureBasaltGoal(this));
     }
@@ -145,8 +149,8 @@ public class CapslingEntity extends CreatureEntity implements IAnimatable {
 
     private void floatCapsling() {
         if (this.isInLava()) {
-            ISelectionContext iselectioncontext = ISelectionContext.of(this);
-            if (iselectioncontext.isAbove(FlowingFluidBlock.STABLE_SHAPE, this.blockPosition(), true) && !this.level.getFluidState(this.blockPosition().above()).is(FluidTags.LAVA)) {
+            CollisionContext iselectioncontext = CollisionContext.of(this);
+            if (iselectioncontext.isAbove(LiquidBlock.STABLE_SHAPE, this.blockPosition(), true) && !this.level.getFluidState(this.blockPosition().above()).is(FluidTags.LAVA)) {
                 this.onGround = true;
             } else {
                 this.setDeltaMovement(this.getDeltaMovement().scale(0.5D).add(0.0D, 0.2D, 0.0D));
@@ -162,11 +166,11 @@ public class CapslingEntity extends CreatureEntity implements IAnimatable {
     }
 
     @Override
-    protected ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        ItemStack itemStack = player.getItemInHand(Hand.MAIN_HAND);
+    protected InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
         if(!getBasalt()) {
-            if (itemStack.getItem() == Items.BASALT) {
-                this.setItemSlot(EquipmentSlotType.MAINHAND, itemStack);
+            if (this.CapslingAcceptedItems.test(itemStack)) {
+                this.setItemSlot(EquipmentSlot.MAINHAND, itemStack);
                 itemStack.shrink(1);
                 setBasalt(true);
                 if (this.level.isClientSide) {
@@ -176,13 +180,13 @@ public class CapslingEntity extends CreatureEntity implements IAnimatable {
                         }
                     }
                 }
-                return ActionResultType.SUCCESS;
+                return InteractionResult.SUCCESS;
             } else {
-                return ActionResultType.FAIL;
+                return InteractionResult.FAIL;
             }
         }
         else{
-            return ActionResultType.FAIL;
+            return InteractionResult.FAIL;
         }
     }
 }

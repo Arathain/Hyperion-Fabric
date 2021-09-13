@@ -1,15 +1,15 @@
 package com.Wadoo.hyperion.Server.Item;
 
 import com.google.common.collect.Maps;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.dispenser.DefaultDispenseItemBehavior;
-import net.minecraft.dispenser.IBlockSource;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Direction;
+import net.minecraft.core.BlockSource;
+import net.minecraft.core.Direction;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.common.util.NonNullSupplier;
 
@@ -39,7 +39,7 @@ public class HyperionSpawnEggItem extends SpawnEggItem {
     public static void RegisterSpawnEggs() {
         DefaultDispenseItemBehavior dispenserBehavior = new DefaultDispenseItemBehavior() {
             @Override
-            public ItemStack execute(IBlockSource source, ItemStack stack) {
+            public ItemStack execute(BlockSource source, ItemStack stack) {
                 Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
                 EntityType<?> type = ((SpawnEggItem) stack.getItem()).getType(stack.getTag());
 
@@ -48,7 +48,7 @@ public class HyperionSpawnEggItem extends SpawnEggItem {
                         stack,
                         null,
                         source.getPos().relative(direction),
-                        SpawnReason.DISPENSER,
+                        MobSpawnType.DISPENSER,
                         direction != Direction.UP,
                         false
                 );
@@ -67,7 +67,7 @@ public class HyperionSpawnEggItem extends SpawnEggItem {
     }
 
     @Override
-    public EntityType<?> getType(@Nullable CompoundNBT nbt) {
+    public EntityType<?> getType(@Nullable CompoundTag nbt) {
         return this.entityTypeSupplier.get();
     }
 }

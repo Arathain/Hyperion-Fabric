@@ -1,14 +1,15 @@
 package com.Wadoo.hyperion.Server.Entity;
 
 import com.Wadoo.hyperion.Server.Register.ItemRegister;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -17,18 +18,18 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class BasaltArrowEntity extends AbstractArrowEntity implements IAnimatable {
+public class BasaltArrowEntity extends AbstractArrow implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     public LivingEntity shooter;
     public LivingEntity entity;
 
-    public BasaltArrowEntity(EntityType<? extends BasaltArrowEntity> type, LivingEntity shooter, World worldIn) {
+    public BasaltArrowEntity(EntityType<? extends BasaltArrowEntity> type, LivingEntity shooter, Level worldIn) {
         super(type, shooter, worldIn);
         this.shooter = shooter;
         this.setBaseDamage(3.7D);
     }
 
-    public BasaltArrowEntity(EntityType<BasaltArrowEntity> type, World world) {
+    public BasaltArrowEntity(EntityType<BasaltArrowEntity> type, Level world) {
         super(type, world);
         this.setBaseDamage(3.7D);
     }
@@ -58,7 +59,7 @@ public class BasaltArrowEntity extends AbstractArrowEntity implements IAnimatabl
 
 
     protected ItemStack getPickupItem() {
-            return new ItemStack(ItemRegister.BASALT_ARROW.get());
+            return new ItemStack((Item)ItemRegister.BASALT_ARROW.get());
     }
 
     @Override
@@ -75,7 +76,7 @@ public class BasaltArrowEntity extends AbstractArrowEntity implements IAnimatabl
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

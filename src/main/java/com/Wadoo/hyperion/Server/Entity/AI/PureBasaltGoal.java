@@ -2,10 +2,10 @@ package com.Wadoo.hyperion.Server.Entity.AI;
 
 import com.Wadoo.hyperion.Server.Entity.CapslingEntity;
 import com.Wadoo.hyperion.Server.Register.ItemRegister;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
 
 public class PureBasaltGoal extends Goal {
     private final CapslingEntity entity;
@@ -36,7 +36,7 @@ public class PureBasaltGoal extends Goal {
             basaltTimer--;
         }
         else{
-            this.entity.setItemInHand(Hand.MAIN_HAND, ItemStack.EMPTY);
+            this.entity.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
             this.entity.setBasalt(false);
             ItemEntity entity = new ItemEntity(this.entity.level, this.entity.getX(), this.entity.getY(), this.entity.getZ(), new ItemStack(ItemRegister.PURE_BASALT.get(), 1));
             this.entity.level.addFreshEntity(entity);
