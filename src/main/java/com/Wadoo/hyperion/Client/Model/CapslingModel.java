@@ -22,6 +22,9 @@ public class CapslingModel extends AnimatedGeoModel<CapslingEntity> {
         if(object.hasCustomName() && "VakyPanda".equals(object.getName().getContents())){
             return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/basalt_capsling/vaky_capsling.png");
         }
+        else if(object.hasCustomName() && "Wadoo".equals(object.getName().getContents())){
+            return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/basalt_capsling/wadoo_capsling.png");
+        }
         else {
             return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/basalt_capsling/basalt_capsling.png");
         }
