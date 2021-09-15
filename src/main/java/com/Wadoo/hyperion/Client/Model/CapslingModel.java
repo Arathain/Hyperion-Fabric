@@ -19,7 +19,12 @@ public class CapslingModel extends AnimatedGeoModel<CapslingEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(CapslingEntity object) {
-        return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/basalt_capsling/basalt_capsling.png");
+        if(object.hasCustomName() && "VakyPanda".equals(object.getName().getContents())){
+            return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/basalt_capsling/vaky_capsling.png");
+        }
+        else {
+            return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/basalt_capsling/basalt_capsling.png");
+        }
     }
 
     @Override
