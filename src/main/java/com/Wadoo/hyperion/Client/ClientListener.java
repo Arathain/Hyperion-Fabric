@@ -20,8 +20,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class ClientListener {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
-    public static void registerRenderers(final FMLClientSetupEvent event) {
-k    }
+    public static void registerRenderers(final FMLClientSetupEvent event) { }
 
 
     @SubscribeEvent
