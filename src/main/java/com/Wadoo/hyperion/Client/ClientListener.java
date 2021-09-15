@@ -21,7 +21,7 @@ public class ClientListener {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerRenderers(final FMLClientSetupEvent event) {
-    }
+k    }
 
 
     @SubscribeEvent
