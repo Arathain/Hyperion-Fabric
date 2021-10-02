@@ -43,6 +43,8 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     private static final EntityDataAccessor<Boolean> OPEN = SynchedEntityData.defineId(CapslingEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> BASALT = SynchedEntityData.defineId(CapslingEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> ANIM_STATE = SynchedEntityData.defineId(CapslingEntity.class, EntityDataSerializers.INT);
+
     private Ingredient CapslingAcceptedItems = Ingredient.of(Items.BASALT, Items.POLISHED_BASALT, Items.SMOOTH_BASALT);
     public CapslingEntity(EntityType<? extends PathfinderMob> type, Level world) {
         super(type, world);
@@ -53,27 +55,47 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if(event.isMoving() || this.isInLava()){
-            event.getController().setAnimation(new AnimationBuilder()
-                    .addAnimation("animation.basalt_capsling.walk", true));
-            return PlayState.CONTINUE;
+        if(this.getOpen()) {
+            if (event.isMoving() || this.isInLava() && this.getSpeed() < 0.5D) {
+                event.getController().setAnimation(new AnimationBuilder()
+                        .addAnimation("animation.capsling.walk", true));
+                return PlayState.CONTINUE;
+            }else if(this.getSpeed() > 0.28D){
+                event.getController().setAnimation(new AnimationBuilder()
+                        .addAnimation("animation.capsling.run", true));
+                return PlayState.CONTINUE;
+            } else {
+                event.getController().setAnimation(new AnimationBuilder()
+                        .addAnimation("animation.capsling.idle", true));
+                return PlayState.CONTINUE;
+            }
         }
-        else {
-            event.getController().setAnimation(new AnimationBuilder()
-                    .addAnimation("animation.basalt_capsling.idle", true));
-            return PlayState.CONTINUE;
+        else{
+            if (event.isMoving() || this.isInLava()) {
+                event.getController().setAnimation(new AnimationBuilder()
+                        .addAnimation("animation.capsling.walk2", true));
+                return PlayState.CONTINUE;
+            }else if(this.getSpeed() > 0.28D){
+                event.getController().setAnimation(new AnimationBuilder()
+                        .addAnimation("animation.capsling.run2", true));
+                return PlayState.CONTINUE;
+            } else {
+                event.getController().setAnimation(new AnimationBuilder()
+                        .addAnimation("animation.capsling.idle2", true));
+                return PlayState.CONTINUE;
+            }
         }
     }
 
     private <E extends IAnimatable> PlayState predicateOpen(AnimationEvent<E> event) {
         if(getOpen()){
             event.getController().setAnimation(new AnimationBuilder()
-                    .addAnimation("animation.basalt_capsling.open", true));
+                    .addAnimation("animation.capsling.open", true));
             return PlayState.CONTINUE;
         }
         else{
             event.getController().setAnimation(new AnimationBuilder()
-                    .addAnimation("animation.basalt_capsling.close", false));
+                   .addAnimation("animation.capsling.close", false));
             return PlayState.CONTINUE;
         }
     }
@@ -83,6 +105,7 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
         super.defineSynchedData();
         this.entityData.define(OPEN, false);
         this.entityData.define(BASALT, false);
+        this.entityData.define(ANIM_STATE, 0);
     }
 
     public static boolean canSpawn(EntityType<CapslingEntity> type, ServerLevelAccessor world, MobSpawnType spawnReason, BlockPos pos, Random random) {
@@ -123,8 +146,9 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<CapslingEntity>(this, "controller", 0, this::predicate));
-        data.addAnimationController(new AnimationController<CapslingEntity>(this, "controllerOpen", 7, this::predicateOpen));
+        data.addAnimationController(new AnimationController<CapslingEntity>(this, "controller", 8, this::predicate));
+        data.addAnimationController(new AnimationController<CapslingEntity>(this, "controllerOpen", 8, this::predicateOpen));
+
     }
 
     @Override
@@ -163,6 +187,7 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
     public void tick() {
         super.tick();
         this.floatCapsling();
+        System.out.println(this.getSpeed());
     }
 
     @Override

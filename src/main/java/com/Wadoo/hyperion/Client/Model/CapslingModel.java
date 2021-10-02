@@ -19,15 +19,7 @@ public class CapslingModel extends AnimatedGeoModel<CapslingEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(CapslingEntity object) {
-        if(object.hasCustomName() && "VakyPanda".equals(object.getName().getContents())){
-            return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/basalt_capsling/vaky_capsling.png");
-        }
-        else if(object.hasCustomName() && "Wadoo".equals(object.getName().getContents())){
-            return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/basalt_capsling/wadoo_capsling.png");
-        }
-        else {
             return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/basalt_capsling/basalt_capsling.png");
-        }
     }
 
     @Override
@@ -38,7 +30,7 @@ public class CapslingModel extends AnimatedGeoModel<CapslingEntity> {
     @Override
     public void setLivingAnimations(CapslingEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
-        IBone Head = this.getAnimationProcessor().getBone("Jaw");
+        IBone Head = this.getAnimationProcessor().getBone("jaw");
 
         LivingEntity entityIn = (LivingEntity) entity;
         EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
