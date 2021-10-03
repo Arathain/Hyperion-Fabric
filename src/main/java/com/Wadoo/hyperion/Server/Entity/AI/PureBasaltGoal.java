@@ -34,6 +34,7 @@ public class PureBasaltGoal extends Goal {
         super.tick();
         if(basaltTimer >= 0){
             basaltTimer--;
+
         }
         else{
             this.entity.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);

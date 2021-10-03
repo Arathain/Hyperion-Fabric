@@ -16,10 +16,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -56,28 +53,20 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if(this.getOpen()) {
-            if (event.isMoving() || this.isInLava() && this.getSpeed() < 0.5D) {
+            if (event.isMoving() || this.isInLava() && this.getLastHurtByMob() == null) {
                 event.getController().setAnimation(new AnimationBuilder()
                         .addAnimation("animation.capsling.walk", true));
                 return PlayState.CONTINUE;
-            }else if(this.getSpeed() > 0.28D){
-                event.getController().setAnimation(new AnimationBuilder()
-                        .addAnimation("animation.capsling.run", true));
-                return PlayState.CONTINUE;
-            } else {
+            }else {
                 event.getController().setAnimation(new AnimationBuilder()
                         .addAnimation("animation.capsling.idle", true));
                 return PlayState.CONTINUE;
             }
         }
         else{
-            if (event.isMoving() || this.isInLava()) {
+            if (event.isMoving() || this.isInLava() && this.getLastHurtByMob() == null) {
                 event.getController().setAnimation(new AnimationBuilder()
                         .addAnimation("animation.capsling.walk2", true));
-                return PlayState.CONTINUE;
-            }else if(this.getSpeed() > 0.28D){
-                event.getController().setAnimation(new AnimationBuilder()
-                        .addAnimation("animation.capsling.run2", true));
                 return PlayState.CONTINUE;
             } else {
                 event.getController().setAnimation(new AnimationBuilder()
@@ -164,6 +153,8 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
         }));        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, BasaltBanneretEntity.class, 6.0F, 1.0D, 1.2D));
         this.goalSelector.addGoal(1, new BasaltOpenGoal(this));
         this.goalSelector.addGoal(1, new PureBasaltGoal(this));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
+
     }
 
     @Override
@@ -187,7 +178,13 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
     public void tick() {
         super.tick();
         this.floatCapsling();
-        System.out.println(this.getSpeed());
+        if(this.getBasalt()) {
+            if (random.nextFloat() < 0.11F) {
+                for (int i = 0; i < random.nextInt(2) + 2; ++i) {
+                    this.level.addParticle(ParticleTypes.FLAME, this.getRandomX(0.5D), this.getRandomY() - 0.25D, this.getRandomZ(0.5D), 0, this.random.nextDouble(), 0);
+                }
+            }
+        }
     }
 
     @Override
