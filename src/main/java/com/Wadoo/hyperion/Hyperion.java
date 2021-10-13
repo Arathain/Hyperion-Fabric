@@ -56,6 +56,7 @@ public class Hyperion
     public void onBiomeLoad(BiomeLoadingEvent event){
         HyperionEntitySpawns.onBiomesLoad(event);
     }
+    
     private void setup(final FMLCommonSetupEvent event)
     {
 
