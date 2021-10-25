@@ -197,7 +197,7 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
             if (this.CapslingAcceptedItems.test(itemStack)) {
                 this.setItemSlot(EquipmentSlot.MAINHAND, itemStack);
                 itemStack.shrink(1);
-                setBasalt(true);k
+                setBasalt(true);
                 if (this.level.isClientSide) {
                     for (int i = 0; i < 40; ++i) {
                         if (i % 10 == 0) {
