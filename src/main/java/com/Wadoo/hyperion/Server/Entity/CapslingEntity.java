@@ -87,7 +87,7 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
         }
         else{
             event.getController().setAnimation(new AnimationBuilder()
-                   .addAnimation("animation.capsling.close", false));
+                    .addAnimation("animation.capsling.close", false));
             return PlayState.CONTINUE;
         }
     }

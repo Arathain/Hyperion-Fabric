@@ -1,14 +1,12 @@
 package com.Wadoo.hyperion.Server.Entity;
 
-import com.Wadoo.hyperion.Server.Entity.AI.BanneretAttackGoal;
 import com.Wadoo.hyperion.Server.Entity.AI.BanneretStompGoal;
-import com.Wadoo.hyperion.Server.Register.TagRegister;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.tags.ItemTags;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
@@ -74,7 +72,6 @@ public class BasaltBanneretEntity extends Monster implements IAnimatable {
         this.entityData.set(ATTACK_STATE, attackState);
     }
 
-
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController<BasaltBanneretEntity>(this, "controller", 7, this::predicate));
@@ -109,6 +106,7 @@ public class BasaltBanneretEntity extends Monster implements IAnimatable {
     @Override
     public void tick() {
         super.tick();
+        //ItemTags.getAllTags().getTag(TagRegister.CAPSLING_WANTED).contains(itemstack.getItem())
         System.out.println("The Bannerets attack state is: " + this.getAttackState());
     }
 }
