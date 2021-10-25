@@ -35,7 +35,7 @@ public final class EntityHandler {
 
         event.put(EntityRegister.BASALT_BANNERET.get(), Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH,125.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.18001D)
+                .add(Attributes.MOVEMENT_SPEED, 0.27001D)
                 .add(Attributes.KNOCKBACK_RESISTANCE,0.3D)
                 .add(Attributes.ARMOR, 6.0D)
                 .add(Attributes.FOLLOW_RANGE, 48.0D)

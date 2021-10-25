@@ -3,6 +3,7 @@ package com.Wadoo.hyperion.Server.Entity;
 import com.Wadoo.hyperion.Server.Entity.AI.BasaltOpenGoal;
 import com.Wadoo.hyperion.Server.Entity.AI.MoveToLavaGoal;
 import com.Wadoo.hyperion.Server.Entity.AI.PureBasaltGoal;
+import com.Wadoo.hyperion.Server.Register.TagRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -10,6 +11,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -43,6 +45,7 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
     private static final EntityDataAccessor<Integer> ANIM_STATE = SynchedEntityData.defineId(CapslingEntity.class, EntityDataSerializers.INT);
 
     private Ingredient CapslingAcceptedItems = Ingredient.of(Items.BASALT, Items.POLISHED_BASALT, Items.SMOOTH_BASALT);
+
     public CapslingEntity(EntityType<? extends PathfinderMob> type, Level world) {
         super(type, world);
         this.setPathfindingMalus(BlockPathTypes.WATER, -1.0F);
@@ -194,7 +197,7 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
             if (this.CapslingAcceptedItems.test(itemStack)) {
                 this.setItemSlot(EquipmentSlot.MAINHAND, itemStack);
                 itemStack.shrink(1);
-                setBasalt(true);
+                setBasalt(true);k
                 if (this.level.isClientSide) {
                     for (int i = 0; i < 40; ++i) {
                         if (i % 10 == 0) {

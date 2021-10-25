@@ -1,7 +1,8 @@
 package com.Wadoo.hyperion.Client.Model;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.Server.Entity.CapslingEntity;import net.minecraft.resources.ResourceLocation;
+import com.Wadoo.hyperion.Server.Entity.CapslingEntity;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;

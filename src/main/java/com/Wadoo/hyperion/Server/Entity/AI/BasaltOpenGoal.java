@@ -42,7 +42,7 @@ public class BasaltOpenGoal extends Goal {
     @Override
     public void tick() {
         super.tick();
-        if (this.player.distanceToSqr(this.entity) < 20.0D && this.entity.getCapslingAcceptedItems().test(this.player.getItemInHand(InteractionHand.MAIN_HAND.MAIN_HAND))){
+        if (this.player.distanceToSqr(this.entity) < 20.0D && this.entity.getCapslingAcceptedItems().test(this.player.getItemInHand(InteractionHand.MAIN_HAND))){
             if(!entity.getBasalt()) {
                 this.entity.setOpen(true);
             }

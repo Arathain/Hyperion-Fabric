@@ -1,6 +1,7 @@
 package com.Wadoo.hyperion.Client;
 
 import com.Wadoo.hyperion.Client.Renderer.BasaltBanneretRenderer;
+import com.Wadoo.hyperion.Client.Renderer.BasaltSpikeRenderer;
 import com.Wadoo.hyperion.Client.Renderer.CapslingRenderer;
 import com.Wadoo.hyperion.Client.Renderer.GruskRenderer;
 import com.Wadoo.hyperion.Hyperion;
@@ -28,6 +29,7 @@ public class ClientListener {
         event.registerEntityRenderer(EntityRegister.CAPSLING.get(), CapslingRenderer::new);
         event.registerEntityRenderer(EntityRegister.GRUSK.get(), GruskRenderer::new);
         event.registerEntityRenderer(EntityRegister.BASALT_BANNERET.get(), BasaltBanneretRenderer::new);
+        event.registerEntityRenderer(EntityRegister.BASALT_SPIKE.get(), BasaltSpikeRenderer::new);
 
     }
 

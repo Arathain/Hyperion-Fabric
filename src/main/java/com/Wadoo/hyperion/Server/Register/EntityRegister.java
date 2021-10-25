@@ -1,10 +1,7 @@
 package com.Wadoo.hyperion.Server.Register;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.Server.Entity.BasaltArrowEntity;
-import com.Wadoo.hyperion.Server.Entity.BasaltBanneretEntity;
-import com.Wadoo.hyperion.Server.Entity.CapslingEntity;
-import com.Wadoo.hyperion.Server.Entity.GruskEntity;
+import com.Wadoo.hyperion.Server.Entity.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.fmllegacy.RegistryObject;
@@ -44,6 +41,10 @@ public class EntityRegister {
                             .fireImmune()
                             .build("basalt_arrow"));
 
-
+    public static final RegistryObject<EntityType<BasaltSpikeEntity>> BASALT_SPIKE =
+            ENTITIES.register("basalt_spike",
+                    ()->EntityType.Builder.<BasaltSpikeEntity>of(BasaltSpikeEntity::new, MobCategory.AMBIENT)
+                            .sized(1.0F,1.0F)
+                            .build("basalt_spike"));
 
 }
