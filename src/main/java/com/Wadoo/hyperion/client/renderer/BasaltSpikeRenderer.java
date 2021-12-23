@@ -1,7 +1,7 @@
 package com.Wadoo.hyperion.client.renderer;
 
 import com.Wadoo.hyperion.client.model.BasaltSpikeModel;
-import com.Wadoo.hyperion.servers.entity.BasaltSpikeEntity;
+import com.Wadoo.hyperion.server.entity.BasaltSpikeEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

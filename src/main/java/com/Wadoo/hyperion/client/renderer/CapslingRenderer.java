@@ -1,7 +1,7 @@
 package com.Wadoo.hyperion.client.renderer;
 
 import com.Wadoo.hyperion.client.model.CapslingModel;
-import com.Wadoo.hyperion.servers.entity.CapslingEntity;
+import com.Wadoo.hyperion.server.entity.CapslingEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;

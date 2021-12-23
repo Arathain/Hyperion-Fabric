@@ -1,7 +1,7 @@
 package com.Wadoo.hyperion.client.renderer;
 
 import com.Wadoo.hyperion.client.model.GruskModel;
-import com.Wadoo.hyperion.servers.entity.GruskEntity;
+import com.Wadoo.hyperion.server.entity.GruskEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
