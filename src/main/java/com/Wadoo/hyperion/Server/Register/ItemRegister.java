@@ -1,12 +1,12 @@
-package com.Wadoo.hyperion.Server.Register;
+package com.Wadoo.hyperion.server.register;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.Server.Item.BasaltArrowItem;
-import com.Wadoo.hyperion.Server.Item.HyperionSpawnEggItem;
+import com.Wadoo.hyperion.server.item.BasaltArrowItem;
+import com.Wadoo.hyperion.server.item.HyperionSpawnEggItem;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ItemRegister {
 
@@ -19,7 +19,7 @@ public class ItemRegister {
 
     public static final RegistryObject<BasaltArrowItem> BASALT_ARROW =
             ITEMS.register("basalt_arrow", () ->
-                    new BasaltArrowItem (new Item.Properties().tab(Hyperion.HYPERION_ITEM_GROUP)));
+                    new BasaltArrowItem(new Item.Properties().tab(Hyperion.HYPERION_ITEM_GROUP)));
 
     public static final RegistryObject<Item> CAPSLING_SPAWN_EGG = ITEMS.register(
             "capsling_spawn_egg",
@@ -36,5 +36,11 @@ public class ItemRegister {
                     0x696969,
                     0x1e2a37,
                     (new Item.Properties().tab(Hyperion.HYPERION_ITEM_GROUP))));
+
+    /* public static final RegistryObject<Item> CAPSLING_BUCKET = ITEMS.register(
+            "capsling_bucket",
+            () -> new MobBucketItem(EntityRegister.CAPSLING, () -> Fluids.LAVA, () -> SoundEvents.BUCKET_FILL_LAVA,
+                    new Item.Properties().tab(Hyperion.HYPERION_ITEM_GROUP).stacksTo(1)));
+    */
 
 }

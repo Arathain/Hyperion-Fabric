@@ -1,6 +1,6 @@
-package com.Wadoo.hyperion.Server.Entity;
+package com.Wadoo.hyperion.server.entity;
 
-import com.Wadoo.hyperion.Server.Register.ItemRegister;
+import com.Wadoo.hyperion.server.register.ItemRegister;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -9,7 +9,7 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -59,7 +59,8 @@ public class BasaltArrowEntity extends AbstractArrow implements IAnimatable {
 
 
     protected ItemStack getPickupItem() {
-            return new ItemStack((Item)ItemRegister.BASALT_ARROW.get());
+        return new ItemStack((Item)ItemRegister.BASALT_ARROW.get());
+
     }
 
     @Override

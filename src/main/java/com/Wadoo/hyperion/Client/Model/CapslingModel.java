@@ -1,31 +1,31 @@
-package com.Wadoo.hyperion.Client.Model;
+package com.Wadoo.hyperion.client.model;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.Server.Entity.CapslingEntity;
+import com.Wadoo.hyperion.server.entity.CapslingEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib3.model.AnimatedTickingGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 
 
-public class CapslingModel extends AnimatedGeoModel<CapslingEntity> {
+public class CapslingModel extends AnimatedTickingGeoModel<CapslingEntity> {
 
     @Override
     public ResourceLocation getModelLocation(CapslingEntity object) {
-        return new ResourceLocation(Hyperion.MOD_ID, "geo/entity/basalt_capsling/basalt_capsling.geo.json");
+        return new ResourceLocation(Hyperion.MOD_ID, "geo/entity/basalt_capsling.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureLocation(CapslingEntity object) {
-            return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/basalt_capsling/basalt_capsling.png");
+            return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/basalt_capsling.png");
     }
 
     @Override
     public ResourceLocation getAnimationFileLocation(CapslingEntity animatable) {
-        return new ResourceLocation(Hyperion.MOD_ID, "animations/entity/basalt_capsling/basalt_capsling.animations.json");
+        return new ResourceLocation(Hyperion.MOD_ID, "animations/entity/basalt_capsling.animations.json");
     }
 
     @Override

@@ -6,7 +6,7 @@ issueTrackerURL="https://github.com/Wadoo-Gazoono/Hyperion/issues" #optional
  
 [[mods]] #mandatory
 modId="hyperion"
-version="0.0.3"
+version="0.3.3"
 displayName="Hyperion"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/hyperion"
 logoFile="hyperion.png"

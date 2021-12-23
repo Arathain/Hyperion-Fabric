@@ -1,12 +1,12 @@
-package com.Wadoo.hyperion.Server.Register;
+package com.Wadoo.hyperion.server.register;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.Server.Entity.*;
+import com.Wadoo.hyperion.server.entity.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class EntityRegister {
 
@@ -31,6 +31,7 @@ public class EntityRegister {
                     ()->EntityType.Builder.<BasaltBanneretEntity>of(BasaltBanneretEntity::new, MobCategory.MONSTER)
                             .sized(1.43F,4.1F)
                             .build("basalt_devourer"));
+
 
     public static final RegistryObject<EntityType<BasaltArrowEntity>> BASALT_ARROW =
             ENTITIES.register("basalt_arrow",

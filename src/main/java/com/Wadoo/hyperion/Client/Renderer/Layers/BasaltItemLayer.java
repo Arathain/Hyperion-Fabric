@@ -1,4 +1,4 @@
-package com.Wadoo.hyperion.Client.Renderer.Layers;
+package com.Wadoo.hyperion.client.renderer.layers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
@@ -29,6 +29,7 @@ public class BasaltItemLayer<T extends LivingEntity & IAnimatable, M extends Ent
         ItemStack lvt_11_1_ = p_225628_4_.getItemBySlot(EquipmentSlot.MAINHAND);
         Minecraft.getInstance().getItemInHandRenderer().renderItem(p_225628_4_, lvt_11_1_, ItemTransforms.TransformType.GROUND, false, matrixStack, p_225628_2_, p_225628_3_);
         matrixStack.popPose();
+        
     }
 
 }

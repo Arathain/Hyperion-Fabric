@@ -1,7 +1,7 @@
-package com.Wadoo.hyperion.Server.Entity;
+package com.Wadoo.hyperion.server.entity;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.Server.Register.EntityRegister;
+import com.Wadoo.hyperion.server.register.EntityRegister;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacements;
@@ -33,14 +33,15 @@ public final class EntityHandler {
                 .add(Attributes.ATTACK_DAMAGE, 8.5D)
                 .build());
 
-        event.put(EntityRegister.BASALT_BANNERET.get(), Mob.createMobAttributes()
+         event.put(EntityRegister.BASALT_BANNERET.get(), Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH,125.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.27001D)
+                .add(Attributes.MOVEMENT_SPEED, 0.21001D)
                 .add(Attributes.KNOCKBACK_RESISTANCE,0.3D)
                 .add(Attributes.ARMOR, 6.0D)
                 .add(Attributes.FOLLOW_RANGE, 48.0D)
                 .add(Attributes.ATTACK_DAMAGE, 8.5D)
                 .build());
+
     }
 
     @SubscribeEvent

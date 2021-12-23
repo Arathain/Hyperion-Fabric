@@ -1,9 +1,8 @@
-package com.Wadoo.hyperion.Server.Entity;
+package com.Wadoo.hyperion.server.entity;
 
-import com.Wadoo.hyperion.Server.Entity.AI.BasaltOpenGoal;
-import com.Wadoo.hyperion.Server.Entity.AI.MoveToLavaGoal;
-import com.Wadoo.hyperion.Server.Entity.AI.PureBasaltGoal;
-import com.Wadoo.hyperion.Server.Register.TagRegister;
+import com.Wadoo.hyperion.server.entity.ai.BasaltOpenGoal;
+import com.Wadoo.hyperion.server.entity.ai.MoveToLavaGoal;
+import com.Wadoo.hyperion.server.entity.ai.PureBasaltGoal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -11,7 +10,6 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -29,6 +27,7 @@ import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.IAnimationTickable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.controller.AnimationController;
@@ -38,7 +37,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.Random;
 
-public class CapslingEntity extends PathfinderMob implements IAnimatable {
+public class CapslingEntity extends PathfinderMob implements IAnimatable, IAnimationTickable {
     private final AnimationFactory factory = new AnimationFactory(this);
     private static final EntityDataAccessor<Boolean> OPEN = SynchedEntityData.defineId(CapslingEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> BASALT = SynchedEntityData.defineId(CapslingEntity.class, EntityDataSerializers.BOOLEAN);
@@ -153,7 +152,8 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
         this.goalSelector.addGoal(2, new TemptGoal(this, 1.0D, Ingredient.of(Items.BASALT), false));
         this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, GruskEntity.class, 8.0F, 1.6D, 1.4D, (p_28590_) -> {
             return !this.getBasalt();
-        }));        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, BasaltBanneretEntity.class, 6.0F, 1.0D, 1.2D));
+        }));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, BasaltBanneretEntity.class, 6.0F, 1.0D, 1.2D));
         this.goalSelector.addGoal(1, new BasaltOpenGoal(this));
         this.goalSelector.addGoal(1, new PureBasaltGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
@@ -184,15 +184,48 @@ public class CapslingEntity extends PathfinderMob implements IAnimatable {
         if(this.getBasalt()) {
             if (random.nextFloat() < 0.11F) {
                 for (int i = 0; i < random.nextInt(2) + 2; ++i) {
-                    this.level.addParticle(ParticleTypes.FLAME, this.getRandomX(0.5D), this.getRandomY() - 0.25D, this.getRandomZ(0.5D), 0, this.random.nextDouble(), 0);
+                    this.level.addParticle(ParticleTypes.FLAME, this.getRandomX(0.5D), this.getRandomY() - 0.25D, this.getRandomZ(0.5D), 0, 0.08d, 0);
+                }
+            }
+            if (random.nextFloat() < 0.05F) {
+                for (int i = 0; i < random.nextInt(2) + 2; ++i) {
+                    this.level.addParticle(ParticleTypes.SMOKE, this.getRandomX(0.5D), this.getRandomY() - 0.25D, this.getRandomZ(0.5D), 0, 0.08d, 0);
                 }
             }
         }
     }
 
     @Override
+    public int tickTimer() {
+        return tickCount;
+    }
+
+    @Override
+    protected int getExperienceReward(Player p_21511_) {
+        return super.getExperienceReward(p_21511_);
+    }
+
+    @Override
     protected InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
+        /*if (itemStack.getItem() == Items.BUCKET && this.isAlive()) {
+            this.playSound(SoundEvents.ITEM_FRAME_ADD_ITEM, 1.0F, 1.0F);
+            itemStack.shrink(1);
+            ItemStack itemstack1 = new ItemStack(ItemRegister.CAPSLING_BUCKET.get());
+            this.saveToBucketTag(itemstack1);
+            if (!this.level.isClientSide) {
+                CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer) player, itemstack1);
+            }
+
+            if (itemStack.isEmpty()) {
+                player.setItemInHand(hand, itemstack1);
+            } else if (!player.getInventory().add(itemstack1)) {
+                player.drop(itemstack1, false);
+            }
+
+            this.remove(RemovalReason.DISCARDED);
+            return InteractionResult.SUCCESS;
+        }*/
         if(!getBasalt()) {
             if (this.CapslingAcceptedItems.test(itemStack)) {
                 this.setItemSlot(EquipmentSlot.MAINHAND, itemStack);
