@@ -1,16 +1,12 @@
 package com.Wadoo.hyperion.server.entity;
 
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.MagmaCube;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Strider;
-import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -23,32 +19,34 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class GruskEntity extends Monster implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
+    private static final EntityDataAccessor<Boolean> ACTIVATED = SynchedEntityData.defineId(GruskEntity.class, EntityDataSerializers.BOOLEAN);
 
     public GruskEntity(EntityType<? extends Monster> type, Level world) {
         super(type, world);
-
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        LivingEntity target = this.getTarget();
-        if(this.isAggressive()) {
+        if(this.getTarget() != null && !this.getActivated()){
             event.getController().setAnimation(new AnimationBuilder()
-                    .addAnimation("animation.devourer.chase", true));
+                    .addAnimation("animation.grusk.activate", true));
+            return PlayState.CONTINUE;
+        }
+        if(!getActivated()){
+            event.getController().setAnimation(new AnimationBuilder()
+                    .addAnimation("animation.grusk.idle_deactivated", true));
             return PlayState.CONTINUE;
         }
         if (event.isMoving()) {
-                    event.getController().setAnimation(new AnimationBuilder()
-                            .addAnimation("animation.devourer.walk", true));
-                    return PlayState.CONTINUE;
+            event.getController().setAnimation(new AnimationBuilder()
+                    .addAnimation("animation.grusk.walk", true));
+            return PlayState.CONTINUE;
         }
         else {
             event.getController().setAnimation(new AnimationBuilder()
-                    .addAnimation("animation.devourer.idle", true));
+                    .addAnimation("animation.grusk.idle_activated", true));
             return PlayState.CONTINUE;
         }
     }
-
-
 
 
     @Override
@@ -62,17 +60,8 @@ public class GruskEntity extends Monster implements IAnimatable {
         super.registerGoals();
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, GruskEntity.class, 8.0F));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, CapslingEntity.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, MagmaCube.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Strider.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, true));
         this.goalSelector.addGoal(5, new RandomStrollGoal(this, 1.0D));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, GruskEntity.class)).setAlertOthers());
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.5D, true));
     }
-
-
 
     @Override
     public AnimationFactory getFactory() {
@@ -82,5 +71,25 @@ public class GruskEntity extends Monster implements IAnimatable {
     @Override
     public void tick() {
         super.tick();
+        if(this.getTarget() == null){
+            setActivated(false);
+            this.getNavigation().stop();
+            this.setDeltaMovement(0d, this.getDeltaMovement().y(), 0D);
+        }
+
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(ACTIVATED, false);
+    }
+
+    public void setActivated(boolean activated){
+        this.entityData.set(ACTIVATED, activated);
+    }
+
+    public boolean getActivated(){
+        return this.entityData.get(ACTIVATED);
     }
 }

@@ -26,7 +26,7 @@ public final class EntityHandler {
 
         event.put(EntityRegister.GRUSK.get(), Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH,35.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.251D)
+                .add(Attributes.MOVEMENT_SPEED, 0.15D)
                 .add(Attributes.KNOCKBACK_RESISTANCE,0.3D)
                 .add(Attributes.ARMOR, 4.0D)
                 .add(Attributes.FOLLOW_RANGE, 48.0D)
