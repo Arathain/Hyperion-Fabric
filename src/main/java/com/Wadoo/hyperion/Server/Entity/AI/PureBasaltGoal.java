@@ -1,7 +1,7 @@
 package com.Wadoo.hyperion.server.entity.ai;
 
 import com.Wadoo.hyperion.server.entity.CapslingEntity;
-import com.Wadoo.hyperion.server.register.ItemRegister;
+import com.Wadoo.hyperion.server.registry.ItemRegister;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.item.ItemEntity;

@@ -1,12 +1,12 @@
 package com.Wadoo.hyperion.client;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.client.renderer.BasaltBanneretRenderer;
-import com.Wadoo.hyperion.client.renderer.BasaltSpikeRenderer;
-import com.Wadoo.hyperion.client.renderer.CapslingRenderer;
-import com.Wadoo.hyperion.client.renderer.GruskRenderer;
+import com.Wadoo.hyperion.client.render.BasaltBanneretRenderer;
+import com.Wadoo.hyperion.client.render.BasaltSpikeRenderer;
+import com.Wadoo.hyperion.client.render.CapslingRenderer;
+import com.Wadoo.hyperion.client.render.GruskRenderer;
 import com.Wadoo.hyperion.server.item.HyperionSpawnEggItem;
-import com.Wadoo.hyperion.server.register.EntityRegister;
+import com.Wadoo.hyperion.server.registry.EntityRegister;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.color.item.ItemColors;
 import net.minecraftforge.api.distmarker.Dist;

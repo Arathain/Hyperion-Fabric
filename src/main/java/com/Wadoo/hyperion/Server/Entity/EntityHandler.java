@@ -1,7 +1,7 @@
 package com.Wadoo.hyperion.server.entity;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.server.register.EntityRegister;
+import com.Wadoo.hyperion.server.registry.EntityRegister;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacements;

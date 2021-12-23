@@ -2,7 +2,7 @@ package com.Wadoo.hyperion.server.entity.ai;
 
 import com.Wadoo.hyperion.server.entity.BasaltBanneretEntity;
 import com.Wadoo.hyperion.server.entity.BasaltSpikeEntity;
-import com.Wadoo.hyperion.server.register.EntityRegister;
+import com.Wadoo.hyperion.server.registry.EntityRegister;
 import net.minecraft.world.entity.ai.goal.Goal;
 
 public class BanneretStompGoal extends Goal {

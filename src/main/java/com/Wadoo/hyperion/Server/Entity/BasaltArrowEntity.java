@@ -1,6 +1,6 @@
 package com.Wadoo.hyperion.server.entity;
 
-import com.Wadoo.hyperion.server.register.ItemRegister;
+import com.Wadoo.hyperion.server.registry.ItemRegister;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;

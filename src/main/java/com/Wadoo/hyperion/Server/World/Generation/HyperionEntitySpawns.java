@@ -1,7 +1,7 @@
 package com.Wadoo.hyperion.server.world.generation;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.server.register.EntityRegister;
+import com.Wadoo.hyperion.server.registry.EntityRegister;
 import com.Wadoo.hyperion.server.utils.config.HyperionConfig;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
