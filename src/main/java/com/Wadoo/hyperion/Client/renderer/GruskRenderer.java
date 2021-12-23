@@ -1,4 +1,4 @@
-package com.Wadoo.hyperion.client.render;
+package com.Wadoo.hyperion.client.renderer;
 
 import com.Wadoo.hyperion.client.model.GruskModel;
 import com.Wadoo.hyperion.server.entity.GruskEntity;

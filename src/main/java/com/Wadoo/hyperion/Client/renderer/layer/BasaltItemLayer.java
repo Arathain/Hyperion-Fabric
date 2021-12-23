@@ -1,4 +1,4 @@
-package com.Wadoo.hyperion.client.render.layer;
+package com.Wadoo.hyperion.client.renderer.layer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;

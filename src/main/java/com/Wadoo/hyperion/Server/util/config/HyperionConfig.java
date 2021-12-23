@@ -1,4 +1,4 @@
-package com.Wadoo.hyperion.server.utils.config;
+package com.Wadoo.hyperion.server.util.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 
