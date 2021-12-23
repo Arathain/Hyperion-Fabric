@@ -1,10 +1,10 @@
 package com.Wadoo.hyperion;
 
 
-import com.Wadoo.hyperion.server.item.HyperionSpawnEggItem;
-import com.Wadoo.hyperion.server.registry.EntityRegister;
-import com.Wadoo.hyperion.server.registry.ItemRegister;
-import com.Wadoo.hyperion.server.world.generation.HyperionEntitySpawns;
+import com.Wadoo.hyperion.servers.item.HyperionSpawnEggItem;
+import com.Wadoo.hyperion.servers.registry.EntityRegister;
+import com.Wadoo.hyperion.servers.registry.ItemRegister;
+import com.Wadoo.hyperion.servers.world.generation.HyperionEntitySpawns;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
