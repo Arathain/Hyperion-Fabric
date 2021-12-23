@@ -1,7 +1,7 @@
 package com.Wadoo.hyperion.client.model;
 
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.server.entity.BasaltBanneretEntity;
+import com.Wadoo.hyperion.servers.entity.BasaltBanneretEntity;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.model.AnimatedTickingGeoModel;
