@@ -1,12 +1,12 @@
-package com.Wadoo.hyperion.Client;
+package com.Wadoo.hyperion.client;
 
-import com.Wadoo.hyperion.Client.Renderer.BasaltBanneretRenderer;
-import com.Wadoo.hyperion.Client.Renderer.BasaltSpikeRenderer;
-import com.Wadoo.hyperion.Client.Renderer.CapslingRenderer;
-import com.Wadoo.hyperion.Client.Renderer.GruskRenderer;
 import com.Wadoo.hyperion.Hyperion;
-import com.Wadoo.hyperion.Server.Item.HyperionSpawnEggItem;
-import com.Wadoo.hyperion.Server.Register.EntityRegister;
+import com.Wadoo.hyperion.client.renderer.BasaltBanneretRenderer;
+import com.Wadoo.hyperion.client.renderer.BasaltSpikeRenderer;
+import com.Wadoo.hyperion.client.renderer.CapslingRenderer;
+import com.Wadoo.hyperion.client.renderer.GruskRenderer;
+import com.Wadoo.hyperion.server.item.HyperionSpawnEggItem;
+import com.Wadoo.hyperion.server.register.EntityRegister;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.color.item.ItemColors;
 import net.minecraftforge.api.distmarker.Dist;
@@ -16,6 +16,7 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+
 
 @Mod.EventBusSubscriber(modid = Hyperion.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientListener {

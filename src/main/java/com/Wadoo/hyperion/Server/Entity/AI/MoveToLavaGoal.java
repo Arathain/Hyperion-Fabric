@@ -1,6 +1,6 @@
-package com.Wadoo.hyperion.Server.Entity.AI;
+package com.Wadoo.hyperion.server.entity.ai;
 
-import com.Wadoo.hyperion.Server.Entity.CapslingEntity;
+import com.Wadoo.hyperion.server.entity.CapslingEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.level.LevelReader;

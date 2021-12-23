@@ -1,4 +1,4 @@
-package com.Wadoo.hyperion.Server.Item;
+package com.Wadoo.hyperion.server.item;
 
 import com.google.common.collect.Maps;
 import net.minecraft.core.BlockSource;

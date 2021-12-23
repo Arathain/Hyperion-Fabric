@@ -1,4 +1,4 @@
-package com.Wadoo.hyperion.Server.Entity;
+package com.Wadoo.hyperion.server.entity;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;

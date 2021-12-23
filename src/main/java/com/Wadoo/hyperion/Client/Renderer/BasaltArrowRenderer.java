@@ -1,7 +1,7 @@
-package com.Wadoo.hyperion.Client.Renderer;
+package com.Wadoo.hyperion.client.renderer;
 
-import com.Wadoo.hyperion.Client.Model.BasaltArrowModel;
-import com.Wadoo.hyperion.Server.Entity.BasaltArrowEntity;
+import com.Wadoo.hyperion.client.model.BasaltArrowModel;
+import com.Wadoo.hyperion.server.entity.BasaltArrowEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

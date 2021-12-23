@@ -1,7 +1,7 @@
-package com.Wadoo.hyperion.Server.Item;
+package com.Wadoo.hyperion.server.item;
 
-import com.Wadoo.hyperion.Server.Entity.BasaltArrowEntity;
-import com.Wadoo.hyperion.Server.Register.EntityRegister;
+import com.Wadoo.hyperion.server.entity.BasaltArrowEntity;
+import com.Wadoo.hyperion.server.register.EntityRegister;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;

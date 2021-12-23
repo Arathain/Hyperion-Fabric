@@ -1,7 +1,7 @@
-package com.Wadoo.hyperion.Client.Renderer;
+package com.Wadoo.hyperion.client.renderer;
 
-import com.Wadoo.hyperion.Client.Model.BasaltBanneretModel;
-import com.Wadoo.hyperion.Server.Entity.BasaltBanneretEntity;
+import com.Wadoo.hyperion.client.model.BasaltBanneretModel;
+import com.Wadoo.hyperion.server.entity.BasaltBanneretEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 

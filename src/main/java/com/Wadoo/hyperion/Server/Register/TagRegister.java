@@ -1,4 +1,4 @@
-package com.Wadoo.hyperion.Server.Register;
+package com.Wadoo.hyperion.server.register;
 
 import com.Wadoo.hyperion.Hyperion;
 import net.minecraft.resources.ResourceLocation;

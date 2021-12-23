@@ -1,6 +1,6 @@
-package com.Wadoo.hyperion.Server.Entity.AI;
+package com.Wadoo.hyperion.server.entity.ai;
 
-import com.Wadoo.hyperion.Server.Entity.BasaltBanneretEntity;
+import com.Wadoo.hyperion.server.entity.BasaltBanneretEntity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 

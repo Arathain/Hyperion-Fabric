@@ -1,6 +1,6 @@
-package com.Wadoo.hyperion.Server.Entity.AI;
+package com.Wadoo.hyperion.server.entity.ai;
 
-import com.Wadoo.hyperion.Server.Entity.CapslingEntity;
+import com.Wadoo.hyperion.server.entity.CapslingEntity;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
