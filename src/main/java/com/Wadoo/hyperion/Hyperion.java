@@ -4,6 +4,7 @@ package com.Wadoo.hyperion;
 import com.Wadoo.hyperion.server.item.HyperionSpawnEggItem;
 import com.Wadoo.hyperion.server.registry.EntityRegister;
 import com.Wadoo.hyperion.server.registry.ItemRegister;
+import com.Wadoo.hyperion.server.registry.SoundRegister;
 import com.Wadoo.hyperion.server.world.generation.HyperionEntitySpawns;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
@@ -44,6 +45,7 @@ public class Hyperion
         MinecraftForge.EVENT_BUS.register(this);
         EntityRegister.ENTITIES.register(bus);
         ItemRegister.ITEMS.register(bus);
+        SoundRegister.SOUNDS.register(bus);
         MinecraftForge.EVENT_BUS.addListener(this::onBiomeLoad);
         GeckoLib.initialize();
     }

@@ -1,14 +1,18 @@
 package com.Wadoo.hyperion.server.entity;
 
+import com.Wadoo.hyperion.server.registry.SoundRegister;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -78,6 +82,24 @@ public class GruskEntity extends Monster implements IAnimatable {
         }
 
     }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundRegister.GRUSK_DEATH.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundRegister.GRUSK_AMBIENT.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource p_33034_) {
+        return SoundRegister.GRUSK_HURT.get();
+    }
+
+
 
     @Override
     protected void defineSynchedData() {

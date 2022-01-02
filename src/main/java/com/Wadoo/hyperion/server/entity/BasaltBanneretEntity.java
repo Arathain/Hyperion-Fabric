@@ -33,8 +33,13 @@ public class BasaltBanneretEntity extends Monster implements IAnimatable, IAnima
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if(event.isMoving()){
+            event.getController().setAnimation(new AnimationBuilder()
+                    .addAnimation("animation.banneret.walk", true));
+            return PlayState.CONTINUE;
+        }
         event.getController().setAnimation(new AnimationBuilder()
-                .addAnimation("animation.test.idle", true));
+                .addAnimation("animation.banneret.idle", true));
         return PlayState.CONTINUE;
     }
 
@@ -55,7 +60,7 @@ public class BasaltBanneretEntity extends Monster implements IAnimatable, IAnima
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<BasaltBanneretEntity>(this, "controller", 7, this::predicate));
+        data.addAnimationController(new AnimationController<BasaltBanneretEntity>(this, "controller", 10, this::predicate));
         //data.addAnimationController(new AnimationController<BasaltBanneretEntity>(this, "controllerAttack", 15, this::predicateAttack));
     }
 

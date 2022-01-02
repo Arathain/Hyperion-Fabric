@@ -9,17 +9,17 @@ import software.bernie.geckolib3.model.AnimatedTickingGeoModel;
 public class BasaltBanneretModel extends AnimatedTickingGeoModel<BasaltBanneretEntity> {
     @Override
     public ResourceLocation getModelLocation(BasaltBanneretEntity object) {
-        return new ResourceLocation(Hyperion.MOD_ID, "geo/entity/basalt_banneret.geo.json");
+        return new ResourceLocation(Hyperion.MOD_ID, "geo/entity/banneret.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureLocation(BasaltBanneretEntity object) {
-        return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/basalt_banneret.png");
+        return new ResourceLocation(Hyperion.MOD_ID, "textures/entity/banneret.png");
     }
 
     @Override
     public ResourceLocation getAnimationFileLocation(BasaltBanneretEntity animatable) {
-        return new ResourceLocation(Hyperion.MOD_ID, "animations/entity/basalt_banneret.animations.json");
+        return new ResourceLocation(Hyperion.MOD_ID, "animations/entity/banneret.animations.json");
     }
 
     @Override
